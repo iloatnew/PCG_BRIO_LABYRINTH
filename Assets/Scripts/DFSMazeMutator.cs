@@ -40,14 +40,6 @@ public class DFSMazeMutator : MonoBehaviour
 		{
 			//Debug.Log("Now At " + "[" + currentRow + "," + currentColumn + "]" + " SavePoint is " + mazeCells[currentRow, currentColumn].savePoint + " Pace: " + pace);
 
-			// fin?
-			if (currentColumn == mazeColumns - 1 && currentRow == mazeRows - 1)
-			{
-				finish = true;
-				Debug.Log("DFSsolved");
-				return;
-			}
-
 			// note current cell
 			currentCell = mazeCells[currentRow, currentColumn];
 
@@ -70,6 +62,14 @@ public class DFSMazeMutator : MonoBehaviour
 				// take path from last cell, add this cell in path
 				currentCell.pathTilLastSaveP = lastCell.pathTilLastSaveP;
 				currentCell.pathTilLastSaveP.Add(currentCell);
+			}
+
+
+			// fin?
+			if (currentColumn == mazeColumns - 1 && currentRow == mazeRows - 1)
+			{
+				finish = true;
+				return;
 			}
 
 			// calculate next position
@@ -203,14 +203,41 @@ public class DFSMazeMutator : MonoBehaviour
 		{
 			for (int c = 0; c < mazeColumns; c++)
 			{
+				mazeCells[r, c].southOpen = false;
+				mazeCells[r, c].northOpen = false;
+				mazeCells[r, c].eastOpen = false;
+				mazeCells[r, c].westOpen = false;
+
 				// the northern cell
 				if (mazeHelp.CellIsAvailable(r - 1, c, true))
-					if(mazeCells[r - 1, c].inCriticalPath)
+					if(mazeCells[r - 1, c].inCriticalPath && mazeCells[r,c].inCriticalPath)
 					{
 						mazeCells[r - 1, c].southOpen = true;
 						mazeCells[r, c].northOpen = true;
 					}
+				// the southern cell
+				if (mazeHelp.CellIsAvailable(r + 1, c, true))
+					if (mazeCells[r + 1, c].inCriticalPath && mazeCells[r, c].inCriticalPath)
+					{
+						mazeCells[r + 1, c].northOpen = true;
+						mazeCells[r, c].southOpen = true;
+					}
+				// the eastern cell
+				if (mazeHelp.CellIsAvailable(r , c + 1 , true))
+					if (mazeCells[r, c + 1].inCriticalPath && mazeCells[r, c].inCriticalPath)
+					{
+						mazeCells[r, c + 1].westOpen = true;
+						mazeCells[r, c].eastOpen = true;
+					}
 
+				// the western cell
+				if (mazeHelp.CellIsAvailable(r, c - 1, true))
+					if (mazeCells[r, c - 1].inCriticalPath && mazeCells[r, c].inCriticalPath)
+					{
+						mazeCells[r, c - 1].eastOpen = true;
+						mazeCells[r, c].westOpen = true;
+					}
+					
 			}
 		}
 		

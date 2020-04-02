@@ -27,7 +27,7 @@ public class MazeLoader : MonoBehaviour {
 	private MazeCell[,] mazeCells;
 	private GameObject player;
 	private float size = 6f;
-	MazeAlgorithm ma;
+	HuntAndKillMutated ma;
 
 	/// <summary>
 	/// Use Awake() to make it called before Start from other method. Ensure all GameObjects are availible for others
@@ -37,6 +37,13 @@ public class MazeLoader : MonoBehaviour {
 		
 		ma = new HuntAndKillMutated (mazeCells);
 		ma.CreateMaze ();
+
+		if (criticalOnly)
+		{
+			ma.CriticalPathOnly();
+		}
+
+		ma.DestroyWalls();
 		
 		DigHole(); // Dig Holes accroding to difficulty.
 

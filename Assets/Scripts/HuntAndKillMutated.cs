@@ -38,14 +38,9 @@ public class HuntAndKillMutated : MazeAlgorithm
 			Kill(); // Will run until it hits a dead end.
 			Hunt(); // Finds the next unvisited cell with an adjacent visited cell. If it can't find any, it sets courseComplete to true.
 		}
-
-
+		
 		mazeHelp.dFSMazeMutator.DFS();
-		mazeHelp.dFSMazeMutator.CriticalPathOnly();
-
-
-		mazeHelp.DestroyWalls();
-
+		
 	}
 
 
@@ -109,10 +104,17 @@ public class HuntAndKillMutated : MazeAlgorithm
 			}
 		}
 	}
-	
 
-	
-	
+	public void CriticalPathOnly()
+	{
+		this.mazeHelp.dFSMazeMutator.CriticalPathOnly();
+	}
+
+	public void DestroyWalls()
+	{ 
+		this.mazeHelp.DestroyWalls();
+	}
+
 
 
 }

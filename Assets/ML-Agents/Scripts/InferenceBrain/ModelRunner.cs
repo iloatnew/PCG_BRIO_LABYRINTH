@@ -53,8 +53,9 @@ namespace MLAgents.InferenceBrain
 
                 D.logEnabled = m_Verbose;
 
-                barracudaModel = ModelLoader.Load(model.Value);
-                var executionDevice = inferenceDevice == InferenceDevice.GPU
+				//barracudaModel = ModelLoader.Load(model.Value);
+				barracudaModel = ModelLoader.Load(model);
+				var executionDevice = inferenceDevice == InferenceDevice.GPU
                     ? BarracudaWorkerFactory.Type.ComputePrecompiled
                     : BarracudaWorkerFactory.Type.CSharp;
                 m_Engine = BarracudaWorkerFactory.CreateWorker(executionDevice, barracudaModel, m_Verbose);

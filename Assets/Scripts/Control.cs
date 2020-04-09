@@ -7,19 +7,13 @@ public class Control : MonoBehaviour
 {
 	public MazeLoader mazeLoader;
 	public GameObject maze;
-    // Start is called before the first frame update
-    void Start()
-    {
-		ShiftMaze();
-    }
-
-	private void ShiftMaze()
+	// Start is called before the first frame update
+	void Start()
 	{
-		var halfLengthRow = mazeLoader.mazeRows * mazeLoader.GetSize() / 2;
-		var halfLengthColumn = mazeLoader.mazeColumns * mazeLoader.GetSize() / 2;
-		var shifting = new Vector3(-halfLengthRow, 0, -halfLengthColumn);
-		maze.transform.position = maze.transform.position + shifting;
-	}
+
+	}	
+
+	
 
 	// Update is called once per frame
 	void Update()
@@ -43,5 +37,23 @@ public class Control : MonoBehaviour
 			nextRotation = curRotation + new Vector3(-0.5f, 0f, 0f);
 		}
 		this.transform.rotation = Quaternion.Euler(nextRotation.x, nextRotation.y, nextRotation.z);
+	}
+
+	public void RefreshRotation(Vector3 controlRotation)
+	{
+		var curRotation = transform.rotation.eulerAngles;
+		var nextRotation = curRotation + controlRotation;
+
+		var x = nextRotation.x % 360;
+		x = x > 180 ? x - 360 : x;
+		x =  x > 45 ? 45 : x ;
+		x = x < -45 ? -45 :x;
+
+		var z = nextRotation.z % 360;
+		z = z > 180 ? z - 360 : z;
+		z = z > 45 ? 45 : z;
+		z = z < -45 ? -45 : z;
+
+		this.transform.rotation = Quaternion.Euler(x, 0, z);
 	}
 }

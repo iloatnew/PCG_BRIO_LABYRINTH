@@ -72,9 +72,11 @@ namespace MLAgents
             var brainParameters = behaviorParameters.brainParameters;
             if (model != null)
             {
-                barracudaModel = ModelLoader.Load(model.Value);
-            }
-            if (brainParameters != null)
+				//barracudaModel = ModelLoader.Load(model.Value);
+				barracudaModel = ModelLoader.Load(model);
+
+			}
+			if (brainParameters != null)
             {
                 var failedChecks = InferenceBrain.BarracudaModelParamLoader.CheckModel(
                     barracudaModel, brainParameters, sensorComponents);

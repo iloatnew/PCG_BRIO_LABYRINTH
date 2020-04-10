@@ -6,8 +6,7 @@ using System;
 public class MazeAgent : Agent
 {
 	public MazeLoader mazeLoader;
-	public GameObject agent;
-	public Control control;
+	public AgentInteraction agentInteraction;
 	Transform target;
 	Transform ball;
 	MazeCell[,] mazeCells;
@@ -37,13 +36,23 @@ public class MazeAgent : Agent
 	/// </summary>
 	public override void CollectObservations()
 	{
-		// Target and Agent positions
-		AddVectorObs(target.position);
-		AddVectorObs(ball.position);
+		//// Target and Agent positions
+		//AddVectorObs(target.position);
+		//AddVectorObs(ball.position);
 
-		// Agent velocity
-		AddVectorObs(ball.GetComponent<Rigidbody>().velocity.x);
-		AddVectorObs(ball.GetComponent<Rigidbody>().velocity.z);
+		//// Agent velocity
+		//AddVectorObs(ball.GetComponent<Rigidbody>().velocity.x);
+		//AddVectorObs(ball.GetComponent<Rigidbody>().velocity.z);
+
+		//AddVectorObs(Vector3.Distance(ball.position,
+		//									  target.position));
+
+		// Total 43 inputs
+		List<float> state = agentInteraction.CollectBallState(ball.GetComponent<Rigidbody>(), target, ball); // 40 inputs collected
+		state.Add(transform.localEulerAngles.x / 360f);
+		state.Add(transform.localEulerAngles.z / 360f);
+		//state.Add(Convert.ToSingle(_ballBehavior.IsCornered));
+		AddVectorObs(state);
 	}
 
 
@@ -66,7 +75,7 @@ public class MazeAgent : Agent
 		controlSignal.x = vectorAction[0];
 		controlSignal.z = vectorAction[1];
 
-		control.RefreshRotation(controlSignal);
+		agentInteraction.RefreshRotation(controlSignal);
 
 		// Rewards
 		float distanceToTarget = Vector3.Distance(ball.position,

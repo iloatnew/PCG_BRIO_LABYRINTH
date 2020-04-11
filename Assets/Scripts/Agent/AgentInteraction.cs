@@ -36,23 +36,25 @@ public class AgentInteraction : MonoBehaviour
 	/// Collects the ball's state
 	/// </summary>
 	/// <returns>Returns a list of features to describe the ball's state. Features: Ball position in relation to the final hole, several raycasts to sense its surroundings and its velocity.</returns>
-	public List<float> CollectBallState(Rigidbody _rigidbody,  Transform _targetGoal, Transform _agent)
+	public List<float> CollectBallState(Rigidbody _rigidbody,  Transform _targetGoal, Transform _agent, Transform ball)
 	{
 
 		List<float> ballState = new List<float>();
-		// Add velocity
+
+		// 3 floats: Add velocity
 		Vector3 normalizedVelocity = _rigidbody.velocity.normalized;
 		ballState.Add(normalizedVelocity.x);
 		ballState.Add(normalizedVelocity.y);
 		ballState.Add(normalizedVelocity.z);
-		// Add relative position of the ball to the goal
-		Vector3 relativePosition = transform.position - _targetGoal.position;
-		ballState.Add(relativePosition.x / 7.5f);
-		ballState.Add(relativePosition.y / 4.5f);
-		ballState.Add(relativePosition.z / 7.5f);
 
-		// Add ball height
-		Ray verticalRay = new Ray(transform.position, -_agent.transform.up);
+		// 3 floats: Add relative position of the ball to the goal
+		Vector3 relativePosition = ball.transform.position - _targetGoal.position;
+		ballState.Add(relativePosition.x );
+		ballState.Add(relativePosition.y );
+		ballState.Add(relativePosition.z );
+
+		// 1 floats: Add ball height
+		Ray verticalRay = new Ray(ball.transform.position, -_agent.transform.up);
 		RaycastHit floorHit;
 		if (Physics.Raycast(verticalRay, out floorHit, 1.0f))
 		{
@@ -70,22 +72,23 @@ public class AgentInteraction : MonoBehaviour
 		for (int i = 0; i < _numRays; i++)
 		{
 			Vector3 rayDirection = Quaternion.AngleAxis(step * i, _agent.transform.up) * _agent.transform.forward;
-			rays[i] = new Ray(transform.position, rayDirection);
+			rays[i] = new Ray(ball.transform.position, rayDirection);
 		}
 
-		// Draw rays for debugging
+		//// Draw rays for debugging
 		//foreach (var ray in rays)
 		//{
-		//    Debug.DrawLine(ray.origin, ray.origin + ray.direction * _rayLength, Color.red);
+		//	Debug.DrawLine(ray.origin, ray.origin + ray.direction * _rayLength, Color.red);
 		//}
 
-		// Execute raycasts on walls
+		// 8 floats: Execute raycasts on walls
 		foreach (var ray in rays)
 		{
 			RaycastHit hit;
 			if (Physics.Raycast(ray, out hit, _rayLength, _wallMask))
 			{
 				ballState.Add(hit.distance / _rayLength);
+				Debug.DrawLine(ray.origin, ray.origin + ray.direction * hit.distance, Color.red);
 			}
 			else
 			{
@@ -93,13 +96,14 @@ public class AgentInteraction : MonoBehaviour
 			}
 		}
 
-		// Execute raycasts on holes
+		// 8 floats: Execute raycasts on holes
 		foreach (var ray in rays)
 		{
 			RaycastHit hit;
-			if (Physics.Raycast(ray, out hit, _rayLength, _holeMask))
+			if (Physics.Raycast(ray, out hit, _rayLength, _holeMask | _wallMask))
 			{
 				ballState.Add(hit.distance / _rayLength);
+				Debug.DrawLine(ray.origin, ray.origin + ray.direction * hit.distance, Color.green);
 			}
 			else
 			{

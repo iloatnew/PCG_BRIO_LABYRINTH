@@ -25,7 +25,6 @@ public class MazeAgent : Agent
 	/// </summary>
 	public override void AgentReset()
 	{
-		Debug.Log("reset");
 		mazeLoader.Restart();
 	}
 
@@ -36,22 +35,17 @@ public class MazeAgent : Agent
 	/// </summary>
 	public override void CollectObservations()
 	{
-		//// Target and Agent positions
-		//AddVectorObs(target.position);
-		//AddVectorObs(ball.position);
-
-		//// Agent velocity
-		//AddVectorObs(ball.GetComponent<Rigidbody>().velocity.x);
-		//AddVectorObs(ball.GetComponent<Rigidbody>().velocity.z);
-
+		
 		//AddVectorObs(Vector3.Distance(ball.position,
 		//									  target.position));
 
 		// Total 43 inputs
-		List<float> state = agentInteraction.CollectBallState(ball.GetComponent<Rigidbody>(), target, ball); // 40 inputs collected
+		List<float> state = agentInteraction.CollectBallState(ball.GetComponent<Rigidbody>(), target, transform, ball); // 40 inputs collected??
+
 		state.Add(transform.localEulerAngles.x / 360f);
 		state.Add(transform.localEulerAngles.z / 360f);
 		//state.Add(Convert.ToSingle(_ballBehavior.IsCornered));
+
 		AddVectorObs(state);
 	}
 
@@ -78,8 +72,17 @@ public class MazeAgent : Agent
 		agentInteraction.RefreshRotation(controlSignal);
 
 		// Rewards
-		float distanceToTarget = Vector3.Distance(ball.position,
-												  target.position);
+		float distanceToTarget = Vector3.Distance(ball.position, target.position);
+
+		// Fail
+		float distanceToBoard = ball.localPosition.y + 3;
+
+		if (IsMaxStepReached())
+		{
+			SetReward(-0.1f);
+			Debug.Log("Max Step Reached");
+			Done();
+		}
 
 		// Reached target
 		if (distanceToTarget < 3f)
@@ -89,9 +92,9 @@ public class MazeAgent : Agent
 		}
 
 		// Fell off platform
-		if (distanceToTarget > mazeLoader.mazeRows*mazeLoader.mazeColumns*mazeLoader.GetSize())
+		if (Math.Abs(distanceToBoard) > 2.5f)
 		{
-			Debug.Log("done");
+			SetReward(-0.1f);
 			Done();
 		}
 

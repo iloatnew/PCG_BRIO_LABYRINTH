@@ -176,7 +176,7 @@ MonoBehaviour:
     onDemandDecision: 0
     numberOfActionsBetweenDecisions: 10
   mazeLoader: {fileID: 24547863}
-  agentInteraction: {fileID: 0}
+  agentInteraction: {fileID: 24547861}
 --- !u!114 &24547860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,7 +195,7 @@ MonoBehaviour:
     vectorActionSize: 02000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 11400000, guid: 0eaa1ee0da309ae4cab44ffea69ec6ff, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: My Behavior
@@ -221,7 +221,7 @@ MonoBehaviour:
     m_Bits: 256
   _holeMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
 --- !u!114 &24547862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,7 +254,7 @@ MonoBehaviour:
   ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
   mazeParent: {fileID: 24547857}
   criticalOnly: 1
-  difficulty: 0
+  difficulty: 0.3
   restart: 0
 --- !u!4 &24547864
 Transform:
@@ -334,7 +334,7 @@ MonoBehaviour:
     onDemandDecision: 0
     numberOfActionsBetweenDecisions: 10
   mazeLoader: {fileID: 264057216}
-  agentInteraction: {fileID: 0}
+  agentInteraction: {fileID: 264057214}
 --- !u!114 &264057213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -353,7 +353,7 @@ MonoBehaviour:
     vectorActionSize: 02000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 11400000, guid: 0eaa1ee0da309ae4cab44ffea69ec6ff, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: My Behavior
@@ -379,7 +379,7 @@ MonoBehaviour:
     m_Bits: 256
   _holeMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
 --- !u!114 &264057215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,7 +412,7 @@ MonoBehaviour:
   ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
   mazeParent: {fileID: 264057210}
   criticalOnly: 1
-  difficulty: 0
+  difficulty: 0.3
   restart: 0
 --- !u!4 &264057217
 Transform:
@@ -492,7 +492,7 @@ MonoBehaviour:
     onDemandDecision: 0
     numberOfActionsBetweenDecisions: 10
   mazeLoader: {fileID: 922834292}
-  agentInteraction: {fileID: 0}
+  agentInteraction: {fileID: 922834290}
 --- !u!114 &922834289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,7 +511,7 @@ MonoBehaviour:
     vectorActionSize: 02000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 11400000, guid: 0eaa1ee0da309ae4cab44ffea69ec6ff, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: My Behavior
@@ -537,7 +537,7 @@ MonoBehaviour:
     m_Bits: 256
   _holeMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
 --- !u!114 &922834291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -570,7 +570,7 @@ MonoBehaviour:
   ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
   mazeParent: {fileID: 922834286}
   criticalOnly: 1
-  difficulty: 0
+  difficulty: 0.3
   restart: 0
 --- !u!4 &922834293
 Transform:
@@ -628,7 +628,7 @@ MonoBehaviour:
   ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
   mazeParent: {fileID: 1062459225}
   criticalOnly: 1
-  difficulty: 0
+  difficulty: 0.3
   restart: 0
 --- !u!4 &1062459227
 Transform:
@@ -676,7 +676,7 @@ MonoBehaviour:
     m_Bits: 256
   _holeMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
 --- !u!114 &1062459230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -697,7 +697,7 @@ MonoBehaviour:
     vectorActionSpaceType: 1
   m_Model: {fileID: 0}
   m_InferenceDevice: 0
-  m_BehaviorType: 0
+  m_BehaviorType: 1
   m_BehaviorName: MazeBrain
   m_TeamID: 0
   m_useChildSensors: 1
@@ -719,7 +719,7 @@ MonoBehaviour:
     onDemandDecision: 0
     numberOfActionsBetweenDecisions: 10
   mazeLoader: {fileID: 1062459226}
-  agentInteraction: {fileID: 0}
+  agentInteraction: {fileID: 1062459229}
 --- !u!114 &1062459232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -738,7 +738,7 @@ MonoBehaviour:
     vectorActionSize: 02000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 11400000, guid: 0eaa1ee0da309ae4cab44ffea69ec6ff, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: My Behavior
@@ -808,7 +808,7 @@ MonoBehaviour:
     onDemandDecision: 0
     numberOfActionsBetweenDecisions: 10
   mazeLoader: {fileID: 1229304555}
-  agentInteraction: {fileID: 0}
+  agentInteraction: {fileID: 1229304553}
 --- !u!114 &1229304552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -827,7 +827,7 @@ MonoBehaviour:
     vectorActionSize: 02000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 11400000, guid: 0eaa1ee0da309ae4cab44ffea69ec6ff, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: My Behavior
@@ -853,7 +853,7 @@ MonoBehaviour:
     m_Bits: 256
   _holeMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
 --- !u!114 &1229304554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -886,7 +886,7 @@ MonoBehaviour:
   ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
   mazeParent: {fileID: 1229304549}
   criticalOnly: 1
-  difficulty: 0
+  difficulty: 0.3
   restart: 0
 --- !u!4 &1229304556
 Transform:
@@ -966,7 +966,7 @@ MonoBehaviour:
     onDemandDecision: 0
     numberOfActionsBetweenDecisions: 10
   mazeLoader: {fileID: 1570905869}
-  agentInteraction: {fileID: 0}
+  agentInteraction: {fileID: 1570905867}
 --- !u!114 &1570905866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -985,7 +985,7 @@ MonoBehaviour:
     vectorActionSize: 02000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 11400000, guid: 0eaa1ee0da309ae4cab44ffea69ec6ff, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: My Behavior
@@ -1011,7 +1011,7 @@ MonoBehaviour:
     m_Bits: 256
   _holeMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
 --- !u!114 &1570905868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1044,7 +1044,7 @@ MonoBehaviour:
   ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
   mazeParent: {fileID: 1570905863}
   criticalOnly: 1
-  difficulty: 0
+  difficulty: 0.3
   restart: 0
 --- !u!4 &1570905870
 Transform:
@@ -1193,7 +1193,7 @@ MonoBehaviour:
     onDemandDecision: 0
     numberOfActionsBetweenDecisions: 10
   mazeLoader: {fileID: 1869548941}
-  agentInteraction: {fileID: 0}
+  agentInteraction: {fileID: 1869548939}
 --- !u!114 &1869548938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1212,7 +1212,7 @@ MonoBehaviour:
     vectorActionSize: 02000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 11400000, guid: 0eaa1ee0da309ae4cab44ffea69ec6ff, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: My Behavior
@@ -1238,7 +1238,7 @@ MonoBehaviour:
     m_Bits: 256
   _holeMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
 --- !u!114 &1869548940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1271,7 +1271,7 @@ MonoBehaviour:
   ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
   mazeParent: {fileID: 1869548935}
   criticalOnly: 1
-  difficulty: 0
+  difficulty: 0.3
   restart: 0
 --- !u!4 &1869548942
 Transform:
@@ -1351,7 +1351,7 @@ MonoBehaviour:
     onDemandDecision: 0
     numberOfActionsBetweenDecisions: 10
   mazeLoader: {fileID: 1922594136}
-  agentInteraction: {fileID: 0}
+  agentInteraction: {fileID: 1922594134}
 --- !u!114 &1922594133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1370,7 +1370,7 @@ MonoBehaviour:
     vectorActionSize: 02000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 11400000, guid: 0eaa1ee0da309ae4cab44ffea69ec6ff, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: My Behavior
@@ -1396,7 +1396,7 @@ MonoBehaviour:
     m_Bits: 256
   _holeMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
 --- !u!114 &1922594135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1429,7 +1429,7 @@ MonoBehaviour:
   ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
   mazeParent: {fileID: 1922594130}
   criticalOnly: 1
-  difficulty: 0
+  difficulty: 0.3
   restart: 0
 --- !u!4 &1922594137
 Transform:
@@ -1609,7 +1609,7 @@ MonoBehaviour:
     onDemandDecision: 0
     numberOfActionsBetweenDecisions: 10
   mazeLoader: {fileID: 2008838592}
-  agentInteraction: {fileID: 0}
+  agentInteraction: {fileID: 2008838590}
 --- !u!114 &2008838589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1628,7 +1628,7 @@ MonoBehaviour:
     vectorActionSize: 02000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 11400000, guid: 0eaa1ee0da309ae4cab44ffea69ec6ff, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: My Behavior
@@ -1654,7 +1654,7 @@ MonoBehaviour:
     m_Bits: 256
   _holeMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
 --- !u!114 &2008838591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1687,7 +1687,7 @@ MonoBehaviour:
   ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
   mazeParent: {fileID: 2008838586}
   criticalOnly: 1
-  difficulty: 0
+  difficulty: 0.3
   restart: 0
 --- !u!4 &2008838593
 Transform:

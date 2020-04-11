@@ -38,7 +38,7 @@ public class MazeLoader : MonoBehaviour {
 		transform.rotation = Quaternion.Euler(0,0,0);
 
 		GameObject.Destroy(player);
-		player = Instantiate(ball, transform.TransformPoint(new Vector3(0 * size, -(size / 2f) + 5f, 0 * size) + shifting), Quaternion.identity, mazeParent.transform);
+		player = Instantiate(ball, transform.TransformPoint(new Vector3(0 * size, -(size / 2f) + 1f, 0 * size) + shifting), Quaternion.identity, mazeParent.transform);
 		player.transform.parent = mazeParent.transform;
 	}
 
@@ -192,7 +192,7 @@ public class MazeLoader : MonoBehaviour {
 	///************************************************************
 	private void InitializeBall()
 	{
-		player = Instantiate(ball, transform.TransformPoint(new Vector3(0 * size, -(size / 2f) + 5f , 0 * size) + shifting), Quaternion.identity, mazeParent.transform);
+		player = Instantiate(ball, transform.TransformPoint(new Vector3(0 * size, -(size / 2f) + 1f , 0 * size) + shifting), Quaternion.identity, mazeParent.transform);
 		player.name = "Player";
 		player.GetComponent<Rigidbody>().isKinematic = true;
 		player.transform.parent = mazeParent.transform;

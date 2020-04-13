@@ -12,7 +12,7 @@ public class HuntAndKillMazeAlgorithm : MazeAlgorithm {
 	public HuntAndKillMazeAlgorithm(MazeCell[,] mazeCells) : base(mazeCells) {
 	}
 
-	public override void CreateMaze () {
+	public override void CreateMaze (int token) {
 		HuntAndKill ();
 	}
 
@@ -143,7 +143,7 @@ public class HuntAndKillMazeAlgorithm : MazeAlgorithm {
 
 		while (!wallDestroyed) {
 			// int direction = Random.Range (1, 5);
-			int direction = ProceduralNumberGenerator.GetNextNumber ();
+			int direction = ProceduralNumberGenerator.Stat_GetNextNumber (0);
 
 			if (direction == 1 && row > 0 && mazeCells [row - 1, column].visited) {
 				DestroyWallIfItExists (mazeCells [row, column].northWall);

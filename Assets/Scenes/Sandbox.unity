@@ -192,9 +192,9 @@ MonoBehaviour:
   m_BrainParameters:
     vectorObservationSize: 42
     numStackedVectorObservations: 1
-    vectorActionSize: 02000000
+    vectorActionSize: 0300000003000000
     vectorActionDescriptions: []
-    vectorActionSpaceType: 1
+    vectorActionSpaceType: 0
   m_Model: {fileID: 11400000, guid: 0eaa1ee0da309ae4cab44ffea69ec6ff, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
@@ -246,15 +246,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334ef5519144d0e438a932a03abdacc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeRows: 5
-  mazeColumns: 5
+  mazeRows: 7
+  mazeColumns: 7
   wall: {fileID: 101274, guid: 2a571ace6952b154ca2ff06b0540f264, type: 3}
   trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
   goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
   ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
   mazeParent: {fileID: 24547857}
   criticalOnly: 1
-  difficulty: 0.3
+  difficulty: 0.379
+  token: 1
   restart: 0
 --- !u!4 &24547864
 Transform:
@@ -264,7 +265,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 24547857}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 40, z: 0}
+  m_LocalPosition: {x: 0, y: 100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -350,9 +351,9 @@ MonoBehaviour:
   m_BrainParameters:
     vectorObservationSize: 42
     numStackedVectorObservations: 1
-    vectorActionSize: 02000000
+    vectorActionSize: 0300000003000000
     vectorActionDescriptions: []
-    vectorActionSpaceType: 1
+    vectorActionSpaceType: 0
   m_Model: {fileID: 11400000, guid: 0eaa1ee0da309ae4cab44ffea69ec6ff, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
@@ -404,15 +405,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334ef5519144d0e438a932a03abdacc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeRows: 5
-  mazeColumns: 5
+  mazeRows: 7
+  mazeColumns: 7
   wall: {fileID: 101274, guid: 2a571ace6952b154ca2ff06b0540f264, type: 3}
   trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
   goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
   ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
   mazeParent: {fileID: 264057210}
   criticalOnly: 1
-  difficulty: 0.3
+  difficulty: 0.379
+  token: 1
   restart: 0
 --- !u!4 &264057217
 Transform:
@@ -422,7 +424,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 264057210}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 80, y: 40, z: 0}
+  m_LocalPosition: {x: 200, y: 100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -508,9 +510,9 @@ MonoBehaviour:
   m_BrainParameters:
     vectorObservationSize: 42
     numStackedVectorObservations: 1
-    vectorActionSize: 02000000
+    vectorActionSize: 0300000003000000
     vectorActionDescriptions: []
-    vectorActionSpaceType: 1
+    vectorActionSpaceType: 0
   m_Model: {fileID: 11400000, guid: 0eaa1ee0da309ae4cab44ffea69ec6ff, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
@@ -562,15 +564,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334ef5519144d0e438a932a03abdacc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeRows: 5
-  mazeColumns: 5
+  mazeRows: 7
+  mazeColumns: 7
   wall: {fileID: 101274, guid: 2a571ace6952b154ca2ff06b0540f264, type: 3}
   trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
   goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
   ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
   mazeParent: {fileID: 922834286}
   criticalOnly: 1
-  difficulty: 0.3
+  difficulty: 0.379
+  token: 1
   restart: 0
 --- !u!4 &922834293
 Transform:
@@ -580,7 +583,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 922834286}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 80, y: 0, z: 0}
+  m_LocalPosition: {x: 200, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -620,15 +623,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334ef5519144d0e438a932a03abdacc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeRows: 5
-  mazeColumns: 5
+  mazeRows: 7
+  mazeColumns: 7
   wall: {fileID: 101274, guid: 2a571ace6952b154ca2ff06b0540f264, type: 3}
   trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
   goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
   ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
   mazeParent: {fileID: 1062459225}
   criticalOnly: 1
-  difficulty: 0.3
+  difficulty: 0.379
+  token: 1
   restart: 0
 --- !u!4 &1062459227
 Transform:
@@ -669,7 +673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mazeLoader: {fileID: 1062459226}
-  _numRays: 8
+  _numRays: 16
   _rayLength: 50
   _wallMask:
     serializedVersion: 2
@@ -735,9 +739,9 @@ MonoBehaviour:
   m_BrainParameters:
     vectorObservationSize: 42
     numStackedVectorObservations: 1
-    vectorActionSize: 02000000
+    vectorActionSize: 0300000003000000
     vectorActionDescriptions: []
-    vectorActionSpaceType: 1
+    vectorActionSpaceType: 0
   m_Model: {fileID: 11400000, guid: 0eaa1ee0da309ae4cab44ffea69ec6ff, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
@@ -824,9 +828,9 @@ MonoBehaviour:
   m_BrainParameters:
     vectorObservationSize: 42
     numStackedVectorObservations: 1
-    vectorActionSize: 02000000
+    vectorActionSize: 0300000003000000
     vectorActionDescriptions: []
-    vectorActionSpaceType: 1
+    vectorActionSpaceType: 0
   m_Model: {fileID: 11400000, guid: 0eaa1ee0da309ae4cab44ffea69ec6ff, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
@@ -878,15 +882,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334ef5519144d0e438a932a03abdacc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeRows: 5
-  mazeColumns: 5
+  mazeRows: 7
+  mazeColumns: 7
   wall: {fileID: 101274, guid: 2a571ace6952b154ca2ff06b0540f264, type: 3}
   trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
   goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
   ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
   mazeParent: {fileID: 1229304549}
   criticalOnly: 1
-  difficulty: 0.3
+  difficulty: 0.379
+  token: 1
   restart: 0
 --- !u!4 &1229304556
 Transform:
@@ -896,7 +901,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1229304549}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 80, y: 80, z: 0}
+  m_LocalPosition: {x: 200, y: 200, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -982,9 +987,9 @@ MonoBehaviour:
   m_BrainParameters:
     vectorObservationSize: 42
     numStackedVectorObservations: 1
-    vectorActionSize: 02000000
+    vectorActionSize: 0300000003000000
     vectorActionDescriptions: []
-    vectorActionSpaceType: 1
+    vectorActionSpaceType: 0
   m_Model: {fileID: 11400000, guid: 0eaa1ee0da309ae4cab44ffea69ec6ff, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
@@ -1036,15 +1041,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334ef5519144d0e438a932a03abdacc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeRows: 5
-  mazeColumns: 5
+  mazeRows: 7
+  mazeColumns: 7
   wall: {fileID: 101274, guid: 2a571ace6952b154ca2ff06b0540f264, type: 3}
   trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
   goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
   ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
   mazeParent: {fileID: 1570905863}
   criticalOnly: 1
-  difficulty: 0.3
+  difficulty: 0.379
+  token: 1
   restart: 0
 --- !u!4 &1570905870
 Transform:
@@ -1054,7 +1060,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1570905863}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 40, y: 80, z: 0}
+  m_LocalPosition: {x: 100, y: 200, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1209,9 +1215,9 @@ MonoBehaviour:
   m_BrainParameters:
     vectorObservationSize: 42
     numStackedVectorObservations: 1
-    vectorActionSize: 02000000
+    vectorActionSize: 0300000003000000
     vectorActionDescriptions: []
-    vectorActionSpaceType: 1
+    vectorActionSpaceType: 0
   m_Model: {fileID: 11400000, guid: 0eaa1ee0da309ae4cab44ffea69ec6ff, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
@@ -1263,15 +1269,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334ef5519144d0e438a932a03abdacc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeRows: 5
-  mazeColumns: 5
+  mazeRows: 7
+  mazeColumns: 7
   wall: {fileID: 101274, guid: 2a571ace6952b154ca2ff06b0540f264, type: 3}
   trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
   goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
   ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
   mazeParent: {fileID: 1869548935}
   criticalOnly: 1
-  difficulty: 0.3
+  difficulty: 0.379
+  token: 1
   restart: 0
 --- !u!4 &1869548942
 Transform:
@@ -1281,7 +1288,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1869548935}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 80, z: 0}
+  m_LocalPosition: {x: 0, y: 200, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1367,9 +1374,9 @@ MonoBehaviour:
   m_BrainParameters:
     vectorObservationSize: 42
     numStackedVectorObservations: 1
-    vectorActionSize: 02000000
+    vectorActionSize: 0300000003000000
     vectorActionDescriptions: []
-    vectorActionSpaceType: 1
+    vectorActionSpaceType: 0
   m_Model: {fileID: 11400000, guid: 0eaa1ee0da309ae4cab44ffea69ec6ff, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
@@ -1421,15 +1428,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334ef5519144d0e438a932a03abdacc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeRows: 5
-  mazeColumns: 5
+  mazeRows: 7
+  mazeColumns: 7
   wall: {fileID: 101274, guid: 2a571ace6952b154ca2ff06b0540f264, type: 3}
   trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
   goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
   ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
   mazeParent: {fileID: 1922594130}
   criticalOnly: 1
-  difficulty: 0.3
+  difficulty: 0.379
+  token: 1
   restart: 0
 --- !u!4 &1922594137
 Transform:
@@ -1439,7 +1447,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1922594130}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 40, y: 0, z: 0}
+  m_LocalPosition: {x: 100, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1625,9 +1633,9 @@ MonoBehaviour:
   m_BrainParameters:
     vectorObservationSize: 42
     numStackedVectorObservations: 1
-    vectorActionSize: 02000000
+    vectorActionSize: 0300000003000000
     vectorActionDescriptions: []
-    vectorActionSpaceType: 1
+    vectorActionSpaceType: 0
   m_Model: {fileID: 11400000, guid: 0eaa1ee0da309ae4cab44ffea69ec6ff, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
@@ -1679,15 +1687,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334ef5519144d0e438a932a03abdacc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeRows: 5
-  mazeColumns: 5
+  mazeRows: 7
+  mazeColumns: 7
   wall: {fileID: 101274, guid: 2a571ace6952b154ca2ff06b0540f264, type: 3}
   trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
   goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
   ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
   mazeParent: {fileID: 2008838586}
   criticalOnly: 1
-  difficulty: 0.3
+  difficulty: 0.379
+  token: 1
   restart: 0
 --- !u!4 &2008838593
 Transform:
@@ -1697,7 +1706,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2008838586}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 40, y: 40, z: 0}
+  m_LocalPosition: {x: 100, y: 100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

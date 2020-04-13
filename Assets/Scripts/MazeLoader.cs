@@ -23,6 +23,8 @@ public class MazeLoader : MonoBehaviour {
 
 	[Range(0, 1f)]
 	public float difficulty ;
+	[Range(0, 6)]
+	public int token;
 
 	private MazeCell[,] mazeCells;
 	private GameObject player;
@@ -52,9 +54,10 @@ public class MazeLoader : MonoBehaviour {
 		shifting = new Vector3(-halfLengthRow, 0, -halfLengthColumn);
 
 		InitializeMaze ();
-		
+
 		ma = new HuntAndKillMutated (mazeCells);
-		ma.CreateMaze ();
+		ma.SetMazeHelp(token);
+		ma.CreateMaze(token);
 
 		if (criticalOnly)
 		{
@@ -63,7 +66,7 @@ public class MazeLoader : MonoBehaviour {
 
 		ma.DestroyWalls();
 		
-		DigHole(); // Dig Holes accroding to difficulty.
+		DigHole(token); // Dig Holes accroding to difficulty.
 
 		InitializeBall();
 	}
@@ -141,21 +144,25 @@ public class MazeLoader : MonoBehaviour {
 	/// Randomly Diging Holes
 	/// </summary>
 	///************************************************************
-	private void DigHole()
+	private void DigHole(int token)
 	{
+		///**********************local var*****************************
 		int mass = mazeRows * mazeColumns;
 		int massMinusStartEnd = mass - 2;
+		int curPosition = 0;
 		// Start and End exclusiv
 		int numberOfTraps = (int)(massMinusStartEnd * difficulty);
-		// Same reason, Start and End exclusiv
+		// Same reason, Start and End exclusiv, initial a list from 2 to last - 1
 		var trapPositions = Enumerable.Range(2, massMinusStartEnd).ToList();
+		///************************************************************
 		
 		for (int i = 0; i < (massMinusStartEnd - numberOfTraps); i++)
 		{
-			trapPositions.RemoveAt(Random.Range(0, massMinusStartEnd - i));
+			trapPositions.RemoveAt(token);
+			token += token;
+			token = token % (massMinusStartEnd - i - 1);
 		}
-
-		int curPosition;
+	
 
 		for (int r = 0; r < mazeRows; r++){
 			for (int c = 0; c < mazeColumns; c++){

@@ -10,6 +10,7 @@ public class MazeAgent : Agent
 	Transform target;
 	Transform ball;
 	MazeCell[,] mazeCells;
+	float lastDistance;
 
 	void Start()
 	{
@@ -40,7 +41,7 @@ public class MazeAgent : Agent
 		//									  target.position));
 
 		// Total 43 inputs
-		List<float> state = agentInteraction.CollectBallState(ball.GetComponent<Rigidbody>(), target, transform, ball); // 40 inputs collected??
+		List<float> state = agentInteraction.CollectBallState(ball.GetComponent<Rigidbody>(), target, transform, ball); // 39 inputs collected??
 
 		state.Add(transform.localEulerAngles.x / 360f);
 		state.Add(transform.localEulerAngles.z / 360f);
@@ -64,16 +65,34 @@ public class MazeAgent : Agent
 		target = mazeLoader.GetGoal().transform;
 		ball = mazeLoader.GetPlayer().transform;
 
-		// Actions, size = 2
+		// Actions, size = 2, Discret
 		Vector3 controlSignal = Vector3.zero;
-		controlSignal.x = vectorAction[0];
-		controlSignal.z = vectorAction[1];
 
+		if ((int)vectorAction[0] == 1)
+			controlSignal.x = 1;
+		else if ((int)vectorAction[0] == 2)
+			controlSignal.x = -1;
+		if ((int)vectorAction[1] == 1)
+			controlSignal.z = 1;
+		else if ((int)vectorAction[1] == 2)
+			controlSignal.z = -1;
+			
 		agentInteraction.RefreshRotation(controlSignal);
 
 		// Rewards
-		float distanceToTarget = Vector3.Distance(ball.position, target.position);
+		float distanceToTarget = Math.Abs(Vector3.Distance(ball.position, target.position));
 
+		if (distanceToTarget < lastDistance)
+		{
+			SetReward(0.01f);
+		}
+		else
+		{
+			SetReward(-0.01f);
+		}
+
+
+		lastDistance = distanceToTarget;
 		// Fail
 		float distanceToBoard = ball.localPosition.y + 3;
 

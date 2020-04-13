@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DFSMazeMutator : MonoBehaviour
+public class DFSMazeMutator 
 {
 
 	private enum Dir { north = 1, south = 2, east = 3, west = 4, none = 0 };

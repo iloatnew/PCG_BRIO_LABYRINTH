@@ -18,13 +18,13 @@ public class AgentInteraction : MonoBehaviour
 
 		var x = nextRotation.x % 360;
 		x = x > 180 ? x - 360 : x;
-		x =  x > 45 ? 45 : x ;
-		x = x < -45 ? -45 :x;
+		x =  x > 30 ? 30 : x ;
+		x = x < -30 ? -30 :x;
 
 		var z = nextRotation.z % 360;
 		z = z > 180 ? z - 360 : z;
-		z = z > 45 ? 45 : z;
-		z = z < -45 ? -45 : z;
+		z = z > 30 ? 30 : z;
+		z = z < -30 ? -30 : z;
 
 		this.transform.rotation = Quaternion.Euler(x, 0, z);
 
@@ -81,7 +81,7 @@ public class AgentInteraction : MonoBehaviour
 		//	Debug.DrawLine(ray.origin, ray.origin + ray.direction * _rayLength, Color.red);
 		//}
 
-		// 8 floats: Execute raycasts on walls
+		// 16 floats: Execute raycasts on walls
 		foreach (var ray in rays)
 		{
 			RaycastHit hit;
@@ -96,7 +96,7 @@ public class AgentInteraction : MonoBehaviour
 			}
 		}
 
-		// 8 floats: Execute raycasts on holes
+		// 16 floats: Execute raycasts on holes
 		foreach (var ray in rays)
 		{
 			RaycastHit hit;

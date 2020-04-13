@@ -17,25 +17,34 @@ public class HuntAndKillMutated : MazeAlgorithm
 	public bool courseComplete = false;
 
 	private MazeHelp mazeHelp;
+	private ProceduralNumberGenerator png;
 
 	public HuntAndKillMutated(MazeCell[,] mazeCells) : base(mazeCells)
 	{
-		mazeHelp = new MazeHelp(mazeCells, mazeRows, mazeColumns);
+		png = new ProceduralNumberGenerator();
 	}
 
-	public override void CreateMaze()
+	public void SetMazeHelp(int token)
 	{
-		HuntAndKill();
+		mazeHelp = new MazeHelp(mazeCells, mazeRows, mazeColumns, token);
+	}
+
+	/// <summary>
+	/// Create maze with token, token = 0 -> pure random
+	///</summary>
+	public override void CreateMaze(int token)
+	{
+		HuntAndKill(token);
 		
 	}
 
-	private void HuntAndKill()
+	private void HuntAndKill(int token)
 	{
 		mazeCells[currentRow, currentColumn].visited = true;
 
 		while (!courseComplete)
 		{
-			Kill(); // Will run until it hits a dead end.
+			Kill(token); // Will run until it hits a dead end.
 			Hunt(); // Finds the next unvisited cell with an adjacent visited cell. If it can't find any, it sets courseComplete to true.
 		}
 		
@@ -44,12 +53,12 @@ public class HuntAndKillMutated : MazeAlgorithm
 	}
 
 
-	private void Kill()
+	private void Kill(int token)
 	{
 		while (mazeHelp.RouteStillAvailable(currentRow, currentColumn))
 		{
-			//int direction = UnityEngine.Random.Range(1, 5);
-			int direction = ProceduralNumberGenerator.GetNextNumber();
+			
+			int direction = png.GetNextNumber(token);
 
 			if (direction == 1 && mazeHelp.CellIsAvailable(currentRow - 1, currentColumn))
 			{

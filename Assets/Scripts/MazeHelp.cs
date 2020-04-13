@@ -3,19 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MazeHelp : MonoBehaviour
+public class MazeHelp 
 {
 	public MazeCell[,] mazeCells;
 	public int mazeRows;
 	public int mazeColumns;
+	public int token;
 	public DFSMazeMutator dFSMazeMutator;
+	private ProceduralNumberGenerator png;
 
-	public MazeHelp(MazeCell[,] mazeCells, int mazeRows, int mazeColumns) 
+	public MazeHelp(MazeCell[,] mazeCells, int mazeRows, int mazeColumns, int token) 
 	{
 		this.mazeCells = mazeCells;
 		this.mazeRows = mazeRows;
 		this.mazeColumns = mazeColumns;
+		this.token = token;
 		dFSMazeMutator = new DFSMazeMutator(this);
+		png = new ProceduralNumberGenerator();
 	}
 
 
@@ -123,7 +127,7 @@ public class MazeHelp : MonoBehaviour
 		while (!wallDestroyed)
 		{
 			// int direction = Random.Range (1, 5);
-			int direction = ProceduralNumberGenerator.GetNextNumber();
+			int direction = png.GetNextNumber(token);
 
 			if (direction == 1 && row > 0 && mazeCells[row - 1, column].visited)
 			{

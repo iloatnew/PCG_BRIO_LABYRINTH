@@ -20,6 +20,7 @@ public class MazeLoader : MonoBehaviour {
 	public GameObject ball;
 	public GameObject mazeParent;
 	public bool criticalOnly;
+	public GameObject[] mazes;
 
 	[Range(0, 1f)]
 	public float difficulty ;
@@ -43,6 +44,7 @@ public class MazeLoader : MonoBehaviour {
 		player = Instantiate(ball, transform.TransformPoint(new Vector3(0 * size, -(size / 2f) + 1f, 0 * size) + shifting), Quaternion.identity, mazeParent.transform);
 		player.transform.parent = mazeParent.transform;
 	}
+
 
 	/// <summary>
 	/// Use Awake() to make it called before Start from other method. Ensure all GameObjects are availible for others
@@ -158,9 +160,12 @@ public class MazeLoader : MonoBehaviour {
 		
 		for (int i = 0; i < (massMinusStartEnd - numberOfTraps); i++)
 		{
-			trapPositions.RemoveAt(token);
-			token += token;
-			token = token % (massMinusStartEnd - i - 1);
+			if (massMinusStartEnd - i - 1 != 0)
+			{
+				token = token % (massMinusStartEnd - i - 1);
+				trapPositions.RemoveAt(token);
+				token += token;
+			}
 		}
 	
 
@@ -181,7 +186,7 @@ public class MazeLoader : MonoBehaviour {
 				if (curPosition == mass) {
 					GameObject.Destroy(mazeCells[r, c].floor);
 					mazeCells[r, c].floor = Instantiate(goal, transform.TransformPoint(new Vector3(r * size, -(size / 2f), c * size) + shifting), Quaternion.identity, mazeParent.transform) as GameObject;
-					mazeCells[r, c].floor.name = "Goal " + r + "," + c;
+					mazeCells[r, c].floor.name = "Goal";
 					mazeCells[r, c].floor.transform.Rotate(Vector3.right, 90f);
 					mazeCells[r, c].floor.transform.parent = mazeParent.transform;
 				}

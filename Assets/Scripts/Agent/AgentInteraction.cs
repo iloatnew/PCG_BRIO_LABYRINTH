@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class AgentInteraction : MonoBehaviour
 {
-	public MazeLoader mazeLoader;
 	public int _numRays;
 	public float _rayLength;
 	public LayerMask _wallMask;
@@ -41,11 +40,16 @@ public class AgentInteraction : MonoBehaviour
 
 		List<float> ballState = new List<float>();
 
+		// 2 floats: ratation x, z
+		ballState.Add(transform.rotation.eulerAngles.x);
+		ballState.Add(transform.rotation.eulerAngles.z);
+
 		// 3 floats: Add velocity
 		Vector3 normalizedVelocity = _rigidbody.velocity.normalized;
 		ballState.Add(normalizedVelocity.x);
 		ballState.Add(normalizedVelocity.y);
 		ballState.Add(normalizedVelocity.z);
+		
 
 		// 3 floats: Add relative position of the ball to the goal
 		Vector3 relativePosition = ball.transform.position - _targetGoal.position;
@@ -88,7 +92,7 @@ public class AgentInteraction : MonoBehaviour
 			if (Physics.Raycast(ray, out hit, _rayLength, _wallMask))
 			{
 				ballState.Add(hit.distance / _rayLength);
-				Debug.DrawLine(ray.origin, ray.origin + ray.direction * hit.distance, Color.red);
+				//Debug.DrawLine(ray.origin, ray.origin + ray.direction * hit.distance, Color.red);
 			}
 			else
 			{
@@ -112,6 +116,43 @@ public class AgentInteraction : MonoBehaviour
 		}
 
 		return ballState;
+	}
+
+
+
+	public bool IsCornered(Transform plant, Transform ball)
+	{
+		// Check if ball is stuck in a corner
+		// Setup rays
+		Ray[] rays = new Ray[4];
+		RaycastHit[] hits = new RaycastHit[rays.Length];
+		bool[] wallHits = new bool[rays.Length];
+		rays[0] = new Ray(ball.transform.position, -plant.transform.right); // left
+		rays[1] = new Ray(ball.transform.position, plant.transform.forward); // forward
+		rays[2] = new Ray(ball.transform.position, plant.transform.right); // right
+		rays[3] = new Ray(ball.transform.position, -plant.transform.forward); // back
+																		// Execute raycasts
+		for (int i = 0; i < rays.Length; i++)
+		{
+			wallHits[i] = Physics.Raycast(rays[i], out hits[i], transform.localScale.x / 2 + 0.005f, _wallMask);
+			Debug.DrawLine(rays[i].origin, rays[i].origin + (rays[i].direction.normalized * (transform.localScale.x / 2 + 0.005f)), Color.black, 0.0f);
+		}
+		// Evaluate raycasts
+		var _isCornered = false;
+		for (int i = 0; i < rays.Length; i++)
+		{
+			if (i < rays.Length - 1)
+			{
+				if (wallHits[i] && wallHits[i + 1])
+					_isCornered = true;
+			}
+			else
+			{
+				if (wallHits[i] && wallHits[0])
+					_isCornered = true;
+			}
+		}
+		return _isCornered;
 	}
 	#endregion
 

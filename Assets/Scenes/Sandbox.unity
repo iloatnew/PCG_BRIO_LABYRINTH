@@ -246,8 +246,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334ef5519144d0e438a932a03abdacc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeRows: 7
-  mazeColumns: 7
+  mazeRows: 6
+  mazeColumns: 6
   wall: {fileID: 101274, guid: 2a571ace6952b154ca2ff06b0540f264, type: 3}
   trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
   goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
@@ -255,8 +255,8 @@ MonoBehaviour:
   mazeParent: {fileID: 24547857}
   criticalOnly: 1
   mazes: []
-  difficulty: 0.323
-  token: 2
+  difficulty: 0.51
+  token: 5
   restart: 0
 --- !u!4 &24547864
 Transform:
@@ -406,8 +406,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334ef5519144d0e438a932a03abdacc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeRows: 7
-  mazeColumns: 7
+  mazeRows: 6
+  mazeColumns: 6
   wall: {fileID: 101274, guid: 2a571ace6952b154ca2ff06b0540f264, type: 3}
   trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
   goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
@@ -415,8 +415,8 @@ MonoBehaviour:
   mazeParent: {fileID: 264057210}
   criticalOnly: 1
   mazes: []
-  difficulty: 0.323
-  token: 2
+  difficulty: 0.51
+  token: 5
   restart: 0
 --- !u!4 &264057217
 Transform:
@@ -566,8 +566,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334ef5519144d0e438a932a03abdacc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeRows: 7
-  mazeColumns: 7
+  mazeRows: 6
+  mazeColumns: 6
   wall: {fileID: 101274, guid: 2a571ace6952b154ca2ff06b0540f264, type: 3}
   trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
   goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
@@ -575,8 +575,8 @@ MonoBehaviour:
   mazeParent: {fileID: 922834286}
   criticalOnly: 1
   mazes: []
-  difficulty: 0.323
-  token: 2
+  difficulty: 0.51
+  token: 5
   restart: 0
 --- !u!4 &922834293
 Transform:
@@ -726,8 +726,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334ef5519144d0e438a932a03abdacc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeRows: 7
-  mazeColumns: 7
+  mazeRows: 6
+  mazeColumns: 6
   wall: {fileID: 101274, guid: 2a571ace6952b154ca2ff06b0540f264, type: 3}
   trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
   goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
@@ -735,8 +735,8 @@ MonoBehaviour:
   mazeParent: {fileID: 1229304549}
   criticalOnly: 1
   mazes: []
-  difficulty: 0.323
-  token: 2
+  difficulty: 0.51
+  token: 5
   restart: 0
 --- !u!4 &1229304556
 Transform:
@@ -886,8 +886,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334ef5519144d0e438a932a03abdacc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeRows: 7
-  mazeColumns: 7
+  mazeRows: 6
+  mazeColumns: 6
   wall: {fileID: 101274, guid: 2a571ace6952b154ca2ff06b0540f264, type: 3}
   trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
   goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
@@ -895,8 +895,8 @@ MonoBehaviour:
   mazeParent: {fileID: 1570905863}
   criticalOnly: 1
   mazes: []
-  difficulty: 0.323
-  token: 2
+  difficulty: 0.51
+  token: 5
   restart: 0
 --- !u!4 &1570905870
 Transform:
@@ -1115,8 +1115,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334ef5519144d0e438a932a03abdacc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeRows: 7
-  mazeColumns: 7
+  mazeRows: 6
+  mazeColumns: 6
   wall: {fileID: 101274, guid: 2a571ace6952b154ca2ff06b0540f264, type: 3}
   trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
   goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
@@ -1124,8 +1124,8 @@ MonoBehaviour:
   mazeParent: {fileID: 1869548935}
   criticalOnly: 1
   mazes: []
-  difficulty: 0.323
-  token: 2
+  difficulty: 0.51
+  token: 5
   restart: 0
 --- !u!4 &1869548942
 Transform:
@@ -1275,8 +1275,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334ef5519144d0e438a932a03abdacc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeRows: 7
-  mazeColumns: 7
+  mazeRows: 6
+  mazeColumns: 6
   wall: {fileID: 101274, guid: 2a571ace6952b154ca2ff06b0540f264, type: 3}
   trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
   goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
@@ -1284,8 +1284,8 @@ MonoBehaviour:
   mazeParent: {fileID: 1922594130}
   criticalOnly: 1
   mazes: []
-  difficulty: 0.323
-  token: 2
+  difficulty: 0.51
+  token: 5
   restart: 0
 --- !u!4 &1922594137
 Transform:
@@ -1535,8 +1535,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334ef5519144d0e438a932a03abdacc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mazeRows: 7
-  mazeColumns: 7
+  mazeRows: 6
+  mazeColumns: 6
   wall: {fileID: 101274, guid: 2a571ace6952b154ca2ff06b0540f264, type: 3}
   trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
   goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
@@ -1544,8 +1544,8 @@ MonoBehaviour:
   mazeParent: {fileID: 2008838586}
   criticalOnly: 1
   mazes: []
-  difficulty: 0.323
-  token: 2
+  difficulty: 0.51
+  token: 5
   restart: 0
 --- !u!4 &2008838593
 Transform:
@@ -1637,22 +1637,27 @@ PrefabInstance:
     - target: {fileID: 3605236640546557223, guid: 6fd86cf32705f3245918b53ff5ac183a,
         type: 3}
       propertyPath: mazeRows
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3605236640546557223, guid: 6fd86cf32705f3245918b53ff5ac183a,
         type: 3}
       propertyPath: mazeColumns
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3605236640546557223, guid: 6fd86cf32705f3245918b53ff5ac183a,
         type: 3}
       propertyPath: token
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3605236640546557223, guid: 6fd86cf32705f3245918b53ff5ac183a,
         type: 3}
       propertyPath: difficulty
-      value: 0.299
+      value: 0.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605236640546557223, guid: 6fd86cf32705f3245918b53ff5ac183a,
+        type: 3}
+      propertyPath: criticalOnly
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fd86cf32705f3245918b53ff5ac183a, type: 3}

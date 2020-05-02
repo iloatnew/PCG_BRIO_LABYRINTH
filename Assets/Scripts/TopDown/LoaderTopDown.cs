@@ -12,33 +12,37 @@ using System.Linq;
 /// 4. Start and End
 ///</summary>
 ///************************************************************
-public class MazeLoader : MonoBehaviour {
+public class LoaderTopDown : MonoBehaviour
+{
 	public int mazeRows, mazeColumns;
+	public GameObject ball;
+	public GameObject mazeParent;
 	public GameObject wall;
 	public GameObject trap;
 	public GameObject goal;
-	public GameObject ball;
-	public GameObject mazeParent;
 	public bool criticalOnly;
 	public GameObject[] mazes;
 
 	[Range(0, 1f)]
-	public float difficulty ;
-	[Range(0, 6)]
+	public float difficulty;
+	[Range(0, 10)]
 	public int token;
 
 	private MazeCell[,] mazeCells;
 	private GameObject player;
+	public GameObject[] spawnPos;
 	private float size = 6f;
 	private Vector3 shifting;
-	HuntAndKillMutated ma;
 
 	public bool restart;
 
+	Vector3 fixPosition;
+	HuntAndKillMutated ma;
+	public GameObject maze;
 
-	public void Restart() 
+	public void Restart()
 	{
-		transform.rotation = Quaternion.Euler(0,0,0);
+		transform.rotation = Quaternion.Euler(0, 0, 0);
 
 		GameObject.Destroy(player);
 		player = Instantiate(ball, transform.TransformPoint(new Vector3(0 * size, -(size / 2f) + 1f, 0 * size) + shifting), Quaternion.identity, mazeParent.transform);
@@ -47,17 +51,32 @@ public class MazeLoader : MonoBehaviour {
 
 
 	/// <summary>
+	/// Build Maze New
+	/// </summary>
+	public void RestartAndSpwan(int index)
+	{
+		transform.rotation = Quaternion.Euler(0, 0, 0);
+		transform.position = fixPosition;
+
+		GameObject.Destroy(player);
+		player = Instantiate(ball, transform.TransformPoint(spawnPos[index].transform.position + new Vector3(0, 1, 0)), Quaternion.identity, maze.transform);
+		player.transform.parent = maze.transform;
+	}
+
+
+	/// <summary>
 	/// Use Awake() to make it called before Start from other method. Ensure all GameObjects are availible for others
 	/// </summary>
-	void Awake () {
+	void Awake()
+	{
 
 		var halfLengthRow = (mazeRows - 1) * GetSize() / 2;
 		var halfLengthColumn = (mazeColumns - 1) * GetSize() / 2;
 		shifting = new Vector3(-halfLengthRow, 0, -halfLengthColumn);
 
-		InitializeMaze ();
+		InitializeMaze();
 
-		ma = new HuntAndKillMutated (mazeCells);
+		ma = new HuntAndKillMutated(mazeCells);
 		ma.SetMazeHelp(token);
 		ma.CreateMaze(token);
 
@@ -66,8 +85,9 @@ public class MazeLoader : MonoBehaviour {
 			ma.CriticalPathOnly();
 		}
 
+		//no neeed to really destroy Gameobj
 		ma.DestroyWalls();
-		
+
 		DigHole(token); // Dig Holes accroding to difficulty.
 
 		InitializeBall();
@@ -82,15 +102,16 @@ public class MazeLoader : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void FixedUpdate () {
+	void FixedUpdate()
+	{
 
 		if (restart)
 		{
 			restart = false;
 			Restart();
-		
+
 		}
-		
+
 
 	}
 
@@ -99,41 +120,46 @@ public class MazeLoader : MonoBehaviour {
 	/// Generating Maze [Rows * Colums]
 	/// </summary>
 	///************************************************************
-	private void InitializeMaze() {
+	private void InitializeMaze()
+	{
 
-		mazeCells = new MazeCell[mazeRows,mazeColumns];
-		
+		mazeCells = new MazeCell[mazeRows, mazeColumns];
 
-		for (int r = 0; r < mazeRows; r++) {
-			for (int c = 0; c < mazeColumns; c++) {
-				mazeCells [r, c] = new MazeCell ();
+
+		for (int r = 0; r < mazeRows; r++)
+		{
+			for (int c = 0; c < mazeColumns; c++)
+			{
+				mazeCells[r, c] = new MazeCell();
 
 				// Use the wall or trap object for the floor!
-				mazeCells [r, c] .floor = Instantiate (wall, transform.TransformPoint(new Vector3 (r*size, -(size/2f), c*size) + shifting), Quaternion.identity, mazeParent.transform) as GameObject;
-				mazeCells [r, c] .floor.name = "Floor " + r + "," + c;
-				mazeCells [r, c] .floor.transform.Rotate (Vector3.right, 90f);
+				mazeCells[r, c].floor = Instantiate(wall, transform.TransformPoint(new Vector3(r * size, -(size / 2f), c * size) + shifting), Quaternion.identity, mazeParent.transform) as GameObject;
+				mazeCells[r, c].floor.name = "Floor " + r + "," + c;
+				mazeCells[r, c].floor.transform.Rotate(Vector3.right, 90f);
 				mazeCells[r, c].floor.transform.parent = mazeParent.transform;
 
-				if (c == 0) {
-					mazeCells[r,c].westWall = Instantiate (wall, transform.TransformPoint(new Vector3 (r*size, 0, (c*size) - (size/2f)) + shifting), Quaternion.identity, mazeParent.transform) as GameObject;
-					mazeCells [r, c].westWall.name = "West Wall " + r + "," + c;
+				if (c == 0)
+				{
+					mazeCells[r, c].westWall = Instantiate(wall, transform.TransformPoint(new Vector3(r * size, 0, (c * size) - (size / 2f)) + shifting), Quaternion.identity, mazeParent.transform) as GameObject;
+					mazeCells[r, c].westWall.name = "West Wall " + r + "," + c;
 					mazeCells[r, c].westWall.transform.parent = mazeParent.transform;
 				}
 
-				mazeCells [r, c].eastWall = Instantiate (wall, transform.TransformPoint(new Vector3 (r*size, 0, (c*size) + (size/2f)) + shifting), Quaternion.identity, mazeParent.transform) as GameObject;
-				mazeCells [r, c].eastWall.name = "East Wall " + r + "," + c;
+				mazeCells[r, c].eastWall = Instantiate(wall, transform.TransformPoint(new Vector3(r * size, 0, (c * size) + (size / 2f)) + shifting), Quaternion.identity, mazeParent.transform) as GameObject;
+				mazeCells[r, c].eastWall.name = "East Wall " + r + "," + c;
 				mazeCells[r, c].eastWall.transform.parent = mazeParent.transform;
 
-				if (r == 0) {
-					mazeCells [r, c].northWall = Instantiate (wall, transform.TransformPoint(new Vector3 ((r*size) - (size/2f), 0, c*size) + shifting), Quaternion.identity, mazeParent.transform) as GameObject;
-					mazeCells [r, c].northWall.name = "North Wall " + r + "," + c;
-					mazeCells [r, c].northWall.transform.Rotate (Vector3.up * 90f);
+				if (r == 0)
+				{
+					mazeCells[r, c].northWall = Instantiate(wall, transform.TransformPoint(new Vector3((r * size) - (size / 2f), 0, c * size) + shifting), Quaternion.identity, mazeParent.transform) as GameObject;
+					mazeCells[r, c].northWall.name = "North Wall " + r + "," + c;
+					mazeCells[r, c].northWall.transform.Rotate(Vector3.up * 90f);
 					mazeCells[r, c].northWall.transform.parent = mazeParent.transform;
 				}
 
-				mazeCells[r,c].southWall = Instantiate (wall, transform.TransformPoint(new Vector3 ((r*size) + (size/2f), 0, c*size) + shifting), Quaternion.identity, mazeParent.transform) as GameObject;
-				mazeCells [r, c].southWall.name = "South Wall " + r + "," + c;
-				mazeCells [r, c].southWall.transform.Rotate (Vector3.up * 90f);
+				mazeCells[r, c].southWall = Instantiate(wall, transform.TransformPoint(new Vector3((r * size) + (size / 2f), 0, c * size) + shifting), Quaternion.identity, mazeParent.transform) as GameObject;
+				mazeCells[r, c].southWall.name = "South Wall " + r + "," + c;
+				mazeCells[r, c].southWall.transform.Rotate(Vector3.up * 90f);
 
 			}
 		}
@@ -148,42 +174,77 @@ public class MazeLoader : MonoBehaviour {
 	///************************************************************
 	private void DigHole(int token)
 	{
+
+		////preset Maze
+		//foreach (Transform child in transform)
+		//{
+		//	if (child.name.Contains("Trap"))
+		//	{
+		//		string[] names = child.name.Split(',');
+		//		int r = int.Parse(names[0].Last<char>().ToString());
+		//		int c = int.Parse(names[1].First<char>().ToString());
+
+		//		mazeCells[r, c].hasTrap = true;
+		//	}
+
+		//}
+
+
+		//generated maze
 		///**********************local var*****************************
 		int mass = mazeRows * mazeColumns;
 		int massMinusStartEnd = mass - 2;
 		int curPosition = 0;
 		// Start and End exclusiv
 		int numberOfTraps = (int)(massMinusStartEnd * difficulty);
-		// Same reason, Start and End exclusiv, initial a list from 2 to last - 1
-		var trapPositions = Enumerable.Range(2, massMinusStartEnd).ToList();
+		// Same reason, Start and End exclusiv, initial a list from 1 to last - 1 (num = massMinusStartEnd)
+		var trapPositions = Enumerable.Range(1, massMinusStartEnd).ToList();
 		///************************************************************
-		
-		for (int i = 0; i < (massMinusStartEnd - numberOfTraps); i++)
-		{
-			if (massMinusStartEnd - i - 1 != 0)
-			{
-				token = token % (massMinusStartEnd - i - 1);
-				trapPositions.RemoveAt(token);
-				token += token;
-			}
-		}
-	
 
-		for (int r = 0; r < mazeRows; r++){
-			for (int c = 0; c < mazeColumns; c++){
+		if (token != 0)
+			for (int i = 0; i < (massMinusStartEnd - numberOfTraps); i++)
+			{
+				if (massMinusStartEnd - i - 1 != 0)
+				{
+					token = token % (massMinusStartEnd - i - 1);
+					trapPositions.RemoveAt(token);
+					token += token;
+				}
+				else
+					trapPositions.RemoveAt(0);
+			}
+		else
+			for (int i = 0; i < (massMinusStartEnd - numberOfTraps); i++)
+			{
+				if (massMinusStartEnd - i - 1 != 0)
+				{
+					int pos = Random.Range(0, massMinusStartEnd - 1 - i);
+					trapPositions.RemoveAt(pos);
+				}
+				else
+					trapPositions.RemoveAt(0);
+		}
+
+		for (int r = 0; r < mazeRows; r++)
+		{
+			for (int c = 0; c < mazeColumns; c++)
+			{
 
 				curPosition = (mazeColumns * r) + c + 1;
 
-				if (trapPositions.Contains(curPosition)){
+				if (trapPositions.Contains(curPosition))
+				{
 					GameObject.Destroy(mazeCells[r, c].floor);
 					mazeCells[r, c].floor = Instantiate(trap, transform.TransformPoint(new Vector3(r * size, -(size / 2f), c * size) + shifting), Quaternion.identity, mazeParent.transform) as GameObject;
 					mazeCells[r, c].floor.name = "Trap " + r + "," + c;
 					mazeCells[r, c].floor.transform.Rotate(Vector3.right, 90f);
 					mazeCells[r, c].floor.transform.parent = mazeParent.transform;
-				}
+					mazeCells[r, c].hasTrap = true;
+			}
 
 				// Instantiate Goal
-				if (curPosition == mass) {
+				if (curPosition == mass)
+				{
 					GameObject.Destroy(mazeCells[r, c].floor);
 					mazeCells[r, c].floor = Instantiate(goal, transform.TransformPoint(new Vector3(r * size, -(size / 2f), c * size) + shifting), Quaternion.identity, mazeParent.transform) as GameObject;
 					mazeCells[r, c].floor.name = "Goal";
@@ -192,6 +253,7 @@ public class MazeLoader : MonoBehaviour {
 				}
 			}
 		}
+
 
 	}
 	/// Block 2  Dig Hole
@@ -204,7 +266,7 @@ public class MazeLoader : MonoBehaviour {
 	///************************************************************
 	private void InitializeBall()
 	{
-		player = Instantiate(ball, transform.TransformPoint(new Vector3(0 * size, -(size / 2f) + 1f , 0 * size) + shifting), Quaternion.identity, mazeParent.transform);
+		player = Instantiate(ball, transform.TransformPoint(new Vector3(0 * size, -(size / 2f) + 1f, 0 * size) + shifting), Quaternion.identity, mazeParent.transform);
 		player.name = "Player";
 		player.GetComponent<Rigidbody>().isKinematic = true;
 		player.transform.parent = mazeParent.transform;
@@ -230,6 +292,6 @@ public class MazeLoader : MonoBehaviour {
 
 	public GameObject GetGoal()
 	{
-		return this.mazeCells[mazeRows - 1, mazeColumns - 1].floor;
+		return GameObject.Find("Goal");
 	}
 }

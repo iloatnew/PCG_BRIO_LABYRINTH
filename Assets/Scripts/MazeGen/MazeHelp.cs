@@ -126,8 +126,12 @@ public class MazeHelp
 
 		while (!wallDestroyed)
 		{
-			// int direction = Random.Range (1, 5);
-			int direction = png.GetNextNumber(token);
+			int direction = 1;
+
+			if (token == 0)
+				direction = ProceduralNumberGenerator.GetRandomNumber();
+			else
+				direction = png.GetNextNumber(token);
 
 			if (direction == 1 && row > 0 && mazeCells[row - 1, column].visited)
 			{

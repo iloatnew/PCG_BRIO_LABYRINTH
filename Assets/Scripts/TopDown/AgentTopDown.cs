@@ -1,18 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using MLAgents;
 using System;
 using Barracuda;
 
-public class MazeAgentCurriculum : Agent
+public class AgentTopDown: Agent
 {
-	public MazeLoaderCurriculum mazeLoader;
-	public AgentInteraction agentInteraction;
+	public LoaderTopDown mazeLoader;
+	public InteractionTopDown agentInteraction;
 	public MazeAcademy mazeAcademy;
 	public NNModel mazeBrain;
+	public int index;
 	Transform target;
 	Transform ball;
 	float lastDistance;
+	float initDistance;
 
 	void Start()
 	{
@@ -27,11 +30,16 @@ public class MazeAgentCurriculum : Agent
 	/// </summary>
 	public override void AgentReset()
 	{
-		int index = (int)mazeAcademy.FloatProperties.GetPropertyWithDefault("mazeindex", 0);
+		index = (int)mazeAcademy.FloatProperties.GetPropertyWithDefault("mazeindex", 0);
 		GiveModel("MazeBrain", mazeBrain);
-		Debug.Log(index);
-		
-		mazeLoader.RebuildAndRestart(index);
+
+		//mazeLoader.RestartAndSpwan(index);
+
+		mazeLoader.Restart();
+
+		target = mazeLoader.GetGoal().transform;
+		ball = mazeLoader.GetPlayer().transform;
+		initDistance = Math.Abs(Vector3.Distance(ball.position, target.position));
 	}
 
 	/// <summary>
@@ -46,10 +54,27 @@ public class MazeAgentCurriculum : Agent
 		ball = mazeLoader.GetPlayer().transform;
 
 		// Total 43 inputs
-		List<float> state = agentInteraction.CollectBallState(ball.GetComponent<Rigidbody>(), target, transform.GetChild(0), ball); // 39 inputs collected??
+		List<float> state = agentInteraction.CollectBallState(ball.GetComponent<Rigidbody>(), mazeLoader); // 39 inputs collected??
 
-		state.Add(transform.localEulerAngles.x / 360f);
-		state.Add(transform.localEulerAngles.z / 360f);
+		// Set mask makes agent only able to trun it backwards, when the board reaches already the max rotation
+		var curRotation = transform.rotation.eulerAngles;
+
+		var x = curRotation.x % 360;
+		x = x > 180 ? x - 360 : x;
+
+		var z = curRotation.z % 360;
+		z = z > 180 ? z - 360 : z;
+
+		if (x > 29f)
+			SetActionMask(0, new int[3] { 0, 1, 3 });
+		else if (x < -29f)
+			SetActionMask(0, new int[3] { 0, 2, 4 });
+
+		if (z > 29f)
+			SetActionMask(1, new int[3] { 0, 1, 3 });
+		else if (z < -29f)
+			SetActionMask(1, new int[3] { 0, 2, 4 });
+
 		//state.Add(Convert.ToSingle(_ballBehavior.IsCornered));
 
 		AddVectorObs(state);
@@ -66,52 +91,85 @@ public class MazeAgentCurriculum : Agent
 	/// </param>
 	public override void AgentAction(float[] vectorAction)
 	{
-
-		// somehow these two always lost
+		// somehow these two always unassigned
 		target = mazeLoader.GetGoal().transform;
 		ball = mazeLoader.GetPlayer().transform;
 
-		//isConered: punish
-		if (agentInteraction.IsCornered(this.transform, ball))
-		{
-			AddReward(-0.005f);
-		}
-
-		// Actions, size = 2, Discret
+		// Actions, branch = 2; size = 5, Discret
 		Vector3 controlSignal = Vector3.zero;
 
 		if ((int)vectorAction[0] == 1)
 			controlSignal.x = 1f;
 		else if ((int)vectorAction[0] == 2)
 			controlSignal.x = -1f;
+		else if ((int)vectorAction[0] == 3)
+			controlSignal.x = 2.5f;
+		else if ((int)vectorAction[0] == 4)
+			controlSignal.x = -2.5f;
+
 		if ((int)vectorAction[1] == 1)
 			controlSignal.z = 1f;
 		else if ((int)vectorAction[1] == 2)
 			controlSignal.z = -1f;
+		else if ((int)vectorAction[1] == 3)
+			controlSignal.z = 2.5f;
+		else if ((int)vectorAction[1] == 4)
+			controlSignal.z = -2.5f;
 
 		agentInteraction.RefreshRotation(controlSignal);
+		
+		CalcRewards();
 
-		// Rewards
+		
+	}
+
+	private void CalcRewards()
+	{
 		float distanceToTarget = Math.Abs(Vector3.Distance(ball.position, target.position));
 
-		//if (distanceToTarget < lastDistance)
+		//// Rewards for Curri differen spawning posi
+		//if (distanceToTarget > initDistance + mazeLoader.GetSize() * 1.5)
 		//{
-		//	AddReward(0.01f);
-		//}
-		//else
-		//{
-		//	AddReward(-0.01f);
+		//	AddReward(-0.1f);
+		//  SetReward(GetCumulativeReward());
+		//	Debug.Log("outBound");
+		//	Done();
 		//}
 
+		if (distanceToTarget < lastDistance)
+		{
+			AddReward(1f / agentParameters.maxStep);
+		}
+		else
+		{
+			AddReward(-1f / agentParameters.maxStep);
+		}
 
 		lastDistance = distanceToTarget;
+
+
+		//isConered: punish
+		if (agentInteraction.IsCornered(this.transform, ball))
+		{
+			AddReward(-(1f / agentParameters.maxStep));
+			Debug.Log("Connered");
+		}
+
+
+		if (agentInteraction.OutTracked())
+		{
+			AddReward(-(1f / agentParameters.maxStep));
+			Debug.Log("OutTracked");
+		}
+
 		// Fail
 		float distanceToBoard = ball.localPosition.y + 3;
 
-		if (IsMaxStepReached())
+		if (GetStepCount() == agentParameters.maxStep)
 		{
 			AddReward(-0.5f);
-			Debug.Log("Max Step Reached");
+			SetReward(GetCumulativeReward());
+			Debug.Log("Max Step Reached with " + GetCumulativeReward());
 			Done();
 		}
 
@@ -119,6 +177,8 @@ public class MazeAgentCurriculum : Agent
 		if (distanceToTarget < 3f)
 		{
 			AddReward(4.0f);
+			SetReward(GetCumulativeReward());
+			Debug.Log("Success with " + GetCumulativeReward());
 			Done();
 		}
 
@@ -126,6 +186,8 @@ public class MazeAgentCurriculum : Agent
 		if (Math.Abs(distanceToBoard) > 2.5f)
 		{
 			AddReward(-0.1f);
+			SetReward(GetCumulativeReward());
+			Debug.Log("Fall with " + GetCumulativeReward());
 			Done();
 		}
 	}
@@ -151,6 +213,8 @@ public class MazeAgentCurriculum : Agent
 			action[1] = 2;
 		return action;
 	}
+
+
 
 
 }

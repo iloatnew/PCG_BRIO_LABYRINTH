@@ -7,12 +7,16 @@ public class MazeCell {
 	public GameObject northWall, southWall, eastWall, westWall, floor;
 	public bool northOpen, southOpen, eastOpen, westOpen;
 
-	public Vector2 savePoint;
+
+	public bool hasTrap;
 
 	public bool isCross;
 	public bool dfsVisited = false;
 	public bool inCriticalPath = false;
-	
+
+	public Vector2 savePoint;
+
 	public List<MazeCell> pathTilLastSaveP = new List<MazeCell>();
+
 
 }

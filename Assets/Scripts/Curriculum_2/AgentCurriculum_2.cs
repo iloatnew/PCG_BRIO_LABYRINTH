@@ -78,7 +78,7 @@ public class AgentCurriculum_2 : Agent
 		ball = mazeLoader.GetPlayer().transform;
 
 		//isConered: punish
-		if (agentInteraction.IsCornered(ball, this.transform))
+		if (agentInteraction.IsCornered(this.transform, ball))
 		{
 			AddReward(-0.005f);
 		}

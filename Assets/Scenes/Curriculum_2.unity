@@ -223,7 +223,6 @@ GameObject:
   - component: {fileID: 815183046}
   - component: {fileID: 815183045}
   - component: {fileID: 815183044}
-  - component: {fileID: 815183043}
   - component: {fileID: 815183042}
   m_Layer: 0
   m_Name: GameManager (Maze Loader Holder)
@@ -249,35 +248,11 @@ MonoBehaviour:
     resetOnDone: 1
     onDemandDecision: 0
     numberOfActionsBetweenDecisions: 1
-  mazeLoader: {fileID: 815183043}
+  mazeLoader: {fileID: 0}
   agentInteraction: {fileID: 815183045}
   mazeAcademy: {fileID: 815183046}
   mazeBrain: {fileID: 11400000, guid: f21e016621a55e64bbb25788a6313ba0, type: 3}
   index: 1
---- !u!114 &815183043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 815183041}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 720822025e570774fa45f0b5d4bd8c1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mazeRows: 7
-  mazeColumns: 7
-  mazeParent: {fileID: 815183041}
-  spawnPos:
-  - {fileID: 241781168}
-  - {fileID: 2051949078}
-  - {fileID: 1668734037}
-  - {fileID: 1088305186}
-  - {fileID: 1486944607}
-  ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
-  restart: 0
-  maze: {fileID: 4750987356250606447}
 --- !u!114 &815183044
 MonoBehaviour:
   m_ObjectHideFlags: 0

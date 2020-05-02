@@ -57,8 +57,13 @@ public class HuntAndKillMutated : MazeAlgorithm
 	{
 		while (mazeHelp.RouteStillAvailable(currentRow, currentColumn))
 		{
+
+			int direction = 1;
 			
-			int direction = png.GetNextNumber(token);
+			if(token == 0)
+				direction = ProceduralNumberGenerator.GetRandomNumber();
+			else
+				direction = png.GetNextNumber(token);
 
 			if (direction == 1 && mazeHelp.CellIsAvailable(currentRow - 1, currentColumn))
 			{

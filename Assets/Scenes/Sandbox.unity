@@ -133,7 +133,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &24547858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,7 +293,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &264057211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,7 +453,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &922834287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,6 +592,141 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1062459225
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1062459227}
+  - component: {fileID: 1062459226}
+  - component: {fileID: 1062459228}
+  - component: {fileID: 1062459229}
+  - component: {fileID: 1062459232}
+  - component: {fileID: 1062459231}
+  m_Layer: 0
+  m_Name: GameManager (Maze Loader Holder)
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1062459226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062459225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 334ef5519144d0e438a932a03abdacc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeRows: 3
+  mazeColumns: 3
+  wall: {fileID: 101274, guid: 2a571ace6952b154ca2ff06b0540f264, type: 3}
+  trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
+  goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
+  ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
+  mazeParent: {fileID: 1062459225}
+  criticalOnly: 0
+  mazes: []
+  difficulty: 0.177
+  token: 0
+  restart: 0
+--- !u!4 &1062459227
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062459225}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1062459228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062459225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0031e311669d3174a8b6dd552f84ffdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+--- !u!114 &1062459229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062459225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a779e18787330a4292c114a0236db55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numRays: 16
+  _rayLength: 50
+  _wallMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _holeMask:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!114 &1062459231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062459225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef024ebd59287ca4a8c9633b417b755f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 5000
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 10
+  mazeLoader: {fileID: 1062459226}
+  agentInteraction: {fileID: 1062459229}
+--- !u!114 &1062459232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062459225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    vectorObservationSize: 42
+    numStackedVectorObservations: 1
+    vectorActionSize: 0300000003000000
+    vectorActionDescriptions: []
+    vectorActionSpaceType: 0
+  m_Model: {fileID: 11400000, guid: 323f7d6eb62d1d849a771144eca1302c, type: 3}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: My Behavior
+  m_TeamID: 0
+  m_useChildSensors: 1
 --- !u!1 &1229304549
 GameObject:
   m_ObjectHideFlags: 0
@@ -613,7 +748,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1229304550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -773,7 +908,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1570905864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1002,7 +1137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1869548936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1162,7 +1297,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1922594131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1422,7 +1557,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2008838587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1561,103 +1696,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &3605236641239915133
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3605236640546557213, guid: 6fd86cf32705f3245918b53ff5ac183a,
-        type: 3}
-      propertyPath: m_Model
-      value: 
-      objectReference: {fileID: 11400000, guid: 323f7d6eb62d1d849a771144eca1302c,
-        type: 3}
-    - target: {fileID: 3605236640546557220, guid: 6fd86cf32705f3245918b53ff5ac183a,
-        type: 3}
-      propertyPath: m_Name
-      value: GameManager (Maze Loader Holder)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3605236640546557222, guid: 6fd86cf32705f3245918b53ff5ac183a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3605236640546557222, guid: 6fd86cf32705f3245918b53ff5ac183a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3605236640546557222, guid: 6fd86cf32705f3245918b53ff5ac183a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3605236640546557222, guid: 6fd86cf32705f3245918b53ff5ac183a,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3605236640546557222, guid: 6fd86cf32705f3245918b53ff5ac183a,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3605236640546557222, guid: 6fd86cf32705f3245918b53ff5ac183a,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3605236640546557222, guid: 6fd86cf32705f3245918b53ff5ac183a,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3605236640546557222, guid: 6fd86cf32705f3245918b53ff5ac183a,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3605236640546557222, guid: 6fd86cf32705f3245918b53ff5ac183a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3605236640546557222, guid: 6fd86cf32705f3245918b53ff5ac183a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3605236640546557222, guid: 6fd86cf32705f3245918b53ff5ac183a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3605236640546557223, guid: 6fd86cf32705f3245918b53ff5ac183a,
-        type: 3}
-      propertyPath: mazeRows
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3605236640546557223, guid: 6fd86cf32705f3245918b53ff5ac183a,
-        type: 3}
-      propertyPath: mazeColumns
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3605236640546557223, guid: 6fd86cf32705f3245918b53ff5ac183a,
-        type: 3}
-      propertyPath: token
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3605236640546557223, guid: 6fd86cf32705f3245918b53ff5ac183a,
-        type: 3}
-      propertyPath: difficulty
-      value: 0.51
-      objectReference: {fileID: 0}
-    - target: {fileID: 3605236640546557223, guid: 6fd86cf32705f3245918b53ff5ac183a,
-        type: 3}
-      propertyPath: criticalOnly
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6fd86cf32705f3245918b53ff5ac183a, type: 3}

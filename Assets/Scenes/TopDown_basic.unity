@@ -362,7 +362,7 @@ MonoBehaviour:
   criticalOnly: 0
   mazes: []
   difficulty: 0.302
-  token: 3
+  token: 0
   spawnPos: []
   restart: 0
   maze: {fileID: 7276161849628875096}

@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Linq;
-
-
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 ///************************************************************
 /// <summary>
@@ -22,6 +22,7 @@ public class LoaderTopDown : MonoBehaviour
 	public GameObject goal;
 	public bool criticalOnly;
 	public GameObject[] mazes;
+	public bool usePresetMaze;
 
 	[Range(0, 1f)]
 	public float difficulty;
@@ -29,6 +30,7 @@ public class LoaderTopDown : MonoBehaviour
 	public int token;
 
 	private MazeCell[,] mazeCells;
+	private MazeCellSerial[,] mazeCellSerials;
 	private GameObject player;
 	public GameObject[] spawnPos;
 	private float size = 6f;
@@ -40,6 +42,7 @@ public class LoaderTopDown : MonoBehaviour
 	HuntAndKillMutated ma;
 	public GameObject maze;
 
+	#region Restart Methods
 	public void Restart()
 	{
 		transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -65,32 +68,94 @@ public class LoaderTopDown : MonoBehaviour
 
 
 	/// <summary>
+	/// Build new maze, accroding to curriculum
+	/// </summary>
+	public void RebuildAndRestart(int index)
+	{
+		transform.rotation = Quaternion.Euler(0, 0, 0);
+		transform.position = fixPosition;
+
+		foreach (Transform tra in transform)
+		{
+			GameObject.Destroy(tra.gameObject);
+		}
+
+		string name = "Assets/MazeData/MazeCell_";
+		name += mazes[index].name;
+		name += ".dat";
+		using (Stream stream = File.Open(name, FileMode.Open))
+		{
+			var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+
+			mazeCellSerials = (MazeCellSerial[,])bformatter.Deserialize(stream);
+
+			mazeRows = mazeCellSerials.GetLength(0);
+			mazeColumns = mazeCellSerials.GetLength(1);
+
+			var halfLengthRow = (mazeRows - 1) * GetSize() / 2;
+			var halfLengthColumn = (mazeColumns - 1) * GetSize() / 2;
+			shifting = new Vector3(-halfLengthRow, 0, -halfLengthColumn);
+
+			maze = GameObject.Instantiate(mazes[index], transform.TransformPoint(new Vector3(0, 0, 0)), Quaternion.identity, mazeParent.transform);
+
+			player = Instantiate(ball, transform.TransformPoint(new Vector3(0 * size, -(size / 2f) + 1.5f, 0 * size) + shifting), Quaternion.identity, maze.transform);
+			player.transform.parent = maze.transform;
+		}
+	}
+	#endregion
+
+	#region initialize method
+	/// <summary>
 	/// Use Awake() to make it called before Start from other method. Ensure all GameObjects are availible for others
 	/// </summary>
 	void Awake()
 	{
-
-		var halfLengthRow = (mazeRows - 1) * GetSize() / 2;
-		var halfLengthColumn = (mazeColumns - 1) * GetSize() / 2;
-		shifting = new Vector3(-halfLengthRow, 0, -halfLengthColumn);
-
-		InitializeMaze();
-
-		ma = new HuntAndKillMutated(mazeCells);
-		ma.SetMazeHelp(token);
-		ma.CreateMaze(token);
-
-		if (criticalOnly)
+		fixPosition = transform.position;
+		if (!usePresetMaze)
 		{
-			ma.CriticalPathOnly();
+			var halfLengthRow = (mazeRows - 1) * GetSize() / 2;
+			var halfLengthColumn = (mazeColumns - 1) * GetSize() / 2;
+			shifting = new Vector3(-halfLengthRow, 0, -halfLengthColumn);
+
+			InitializeMaze();
+
+			ma = new HuntAndKillMutated(mazeCells);
+			ma.SetMazeHelp(token);
+			ma.CreateMaze(token);
+
+			if (criticalOnly)
+			{
+				ma.CriticalPathOnly();
+			}
+
+			//no neeed to really destroy Gameobj
+			ma.DestroyWalls();
+
+			DigHole(token); // Dig Holes accroding to difficulty.
+
+			InitializeBall();
+
+			//serialization
+			//MazeCellSerial[,] mazeCellSerials = new MazeCellSerial[mazeRows, mazeColumns];
+			//for (int r = 0; r < mazeRows; r++)
+			//{
+			//	for (int c = 0; c < mazeColumns; c++)
+			//	{
+			//		mazeCellSerials[r, c] = mazeCells[r, c].GetMazeCellSerial();
+			//	}
+			//}
+			//		FileStream fs = new FileStream("Assets/MazeData/MazeCell_3_3_1.dat", FileMode.Create);
+			//BinaryFormatter bf = new BinaryFormatter();
+			//bf.Serialize(fs, mazeCellSerials);
+			//fs.Close();
+
+		}
+		else 
+		{
+			InitializeBall();
+		
 		}
 
-		//no neeed to really destroy Gameobj
-		ma.DestroyWalls();
-
-		DigHole(token); // Dig Holes accroding to difficulty.
-
-		InitializeBall();
 	}
 
 	/// <summary>
@@ -100,7 +165,7 @@ public class LoaderTopDown : MonoBehaviour
 	{
 		player.GetComponent<Rigidbody>().isKinematic = false;
 	}
-
+	#endregion
 	// Update is called once per frame
 	void FixedUpdate()
 	{
@@ -223,14 +288,14 @@ public class LoaderTopDown : MonoBehaviour
 				}
 				else
 					trapPositions.RemoveAt(0);
-		}
+			}
 
 		for (int r = 0; r < mazeRows; r++)
 		{
 			for (int c = 0; c < mazeColumns; c++)
 			{
 
-				curPosition = (mazeColumns * r) + c + 1;
+				curPosition = (mazeColumns * r) + c;
 
 				if (trapPositions.Contains(curPosition))
 				{
@@ -243,7 +308,7 @@ public class LoaderTopDown : MonoBehaviour
 			}
 
 				// Instantiate Goal
-				if (curPosition == mass)
+				if ((curPosition+1) == mass)
 				{
 					GameObject.Destroy(mazeCells[r, c].floor);
 					mazeCells[r, c].floor = Instantiate(goal, transform.TransformPoint(new Vector3(r * size, -(size / 2f), c * size) + shifting), Quaternion.identity, mazeParent.transform) as GameObject;
@@ -280,9 +345,12 @@ public class LoaderTopDown : MonoBehaviour
 		return this.size;
 	}
 
-	public MazeCell[,] GetMazeCells()
+	public MazeCellSerial[,] GetMazeCells()
 	{
-		return this.mazeCells;
+		if (!usePresetMaze)
+			return mazeCells;
+		else
+			return mazeCellSerials;
 	}
 
 	public GameObject GetPlayer()

@@ -12,6 +12,7 @@ public class AgentTopDown: Agent
 	public MazeAcademy mazeAcademy;
 	public NNModel mazeBrain;
 	public int index;
+	public bool useCurriculum;
 	Transform target;
 	Transform ball;
 	float lastDistance;
@@ -21,6 +22,10 @@ public class AgentTopDown: Agent
 	{
 		target = mazeLoader.GetGoal().transform;
 		ball = mazeLoader.GetPlayer().transform;
+		if (mazeLoader.usePresetMaze)
+		{
+			useCurriculum = true;
+		}
 	}
 
 	/// <summary>
@@ -30,16 +35,24 @@ public class AgentTopDown: Agent
 	/// </summary>
 	public override void AgentReset()
 	{
-		index = (int)mazeAcademy.FloatProperties.GetPropertyWithDefault("mazeindex", 0);
+
 		GiveModel("MazeBrain", mazeBrain);
-
-		//mazeLoader.RestartAndSpwan(index);
-
-		mazeLoader.Restart();
-
+		//curriculum with different mazes
+		if (useCurriculum)
+		{
+			index = (int)mazeAcademy.FloatProperties.GetPropertyWithDefault("mazeindex", 0);
+			mazeLoader.RebuildAndRestart(index);
+		}
+		//normal
+		else 
+		{
+			mazeLoader.Restart();
+		}
 		target = mazeLoader.GetGoal().transform;
 		ball = mazeLoader.GetPlayer().transform;
 		initDistance = Math.Abs(Vector3.Distance(ball.position, target.position));
+		//mazeLoader.RestartAndSpwan(index);
+
 	}
 
 	/// <summary>

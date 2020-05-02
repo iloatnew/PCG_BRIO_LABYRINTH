@@ -43,7 +43,7 @@ public class InteractionTopDown : MonoBehaviour
 		GameObject ball = mazeLoader.GetPlayer();
 		Transform _targetGoal = mazeLoader.GetGoal().transform;
 		GameObject _agent = this.gameObject;
-		MazeCell[,] mazeCells = mazeLoader.GetMazeCells();
+		MazeCellSerial[,] mazeCells = mazeLoader.GetMazeCells();
 
 		List<float> ballState = new List<float>();
 
@@ -160,7 +160,7 @@ public class InteractionTopDown : MonoBehaviour
 	/// In critical path: 1, not in critical path: 0
 	/// </summary>
 	/// <returns>Returns a list of features to describe the ball's state. Features: Ball position in relation to the final hole, several raycasts to sense its surroundings and its velocity.</returns>
-	private List<float> AddRouteStates( MazeCell[,] mazeCells, GameObject ball, GameObject _agent)
+	private List<float> AddRouteStates(MazeCellSerial[,] mazeCells, GameObject ball, GameObject _agent)
 	{
 		List<float> ballState = new List<float>();
 		Ray verticalRay = new Ray(ball.transform.position, -_agent.transform.up);
@@ -219,7 +219,7 @@ public class InteractionTopDown : MonoBehaviour
 	/// Trap: 0, NoTrap: 1.
 	/// </summary>
 	/// <returns>Returns a list of features to describe the ball's state. Features: Ball position in relation to the final hole, several raycasts to sense its surroundings and its velocity.</returns>
-	private List<float> AddFloorStates(MazeCell mazeCell, int r, int c)
+	private List<float> AddFloorStates(MazeCellSerial mazeCell, int r, int c)
 	{
 		List<float> ballState = new List<float>();
 		string log = "cell " + r + " " + c + " : ";
@@ -241,7 +241,7 @@ public class InteractionTopDown : MonoBehaviour
 	/// Path: 0, Wall: 1.
 	/// </summary>
 	/// <returns>Returns a list of features to describe the ball's state. Features: Ball position in relation to the final hole, several raycasts to sense its surroundings and its velocity.</returns>
-	private List<float> AddWallStates(MazeCell mazeCell, int r, int c)
+	private List<float> AddWallStates(MazeCellSerial mazeCell, int r, int c)
 	{
 		List<float>  ballState = new List<float>();
 		string log = "cell " + r + " " + c + " : ";

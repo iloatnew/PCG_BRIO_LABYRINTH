@@ -32,6 +32,7 @@ public class MazeCellSerial
 	public bool dfsVisited = false;
 	public bool inCriticalPath = false;
 
+	public List<MazeCellSerial> pathTilLastSaveP = new List<MazeCellSerial>();
 
 }
 
@@ -42,11 +43,15 @@ public class MazeCell : MazeCellSerial
 	
 	public Vector2 savePoint;
 
-	public List<MazeCell> pathTilLastSaveP = new List<MazeCell>();
+
+	public List<Transform> DfsWalls = new List<Transform>();
+	public List<Transform> NonDfsWalls = new List<Transform>();
 
 	public MazeCellSerial GetMazeCellSerial()
 	{
 		return new MazeCellSerial(visited, northOpen, southOpen, eastOpen, westOpen, hasTrap, isCross, dfsVisited, inCriticalPath);
 	}
+
+	
 
 }

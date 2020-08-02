@@ -1,0 +1,2611 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!29 &1
+OcclusionCullingSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_OcclusionBakeSettings:
+    smallestOccluder: 5
+    smallestHole: 0.25
+    backfaceThreshold: 100
+  m_SceneGUID: 00000000000000000000000000000000
+  m_OcclusionCullingData: {fileID: 0}
+--- !u!104 &2
+RenderSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 9
+  m_Fog: 0
+  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogMode: 3
+  m_FogDensity: 0.01
+  m_LinearFogStart: 0
+  m_LinearFogEnd: 300
+  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
+  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientIntensity: 1
+  m_AmbientMode: 0
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SkyboxMaterial: {fileID: 2100000, guid: e56d40e329586a146b09efbbf1915a77, type: 2}
+  m_HaloStrength: 0.5
+  m_FlareStrength: 1
+  m_FlareFadeSpeed: 3
+  m_HaloTexture: {fileID: 0}
+  m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
+  m_DefaultReflectionMode: 0
+  m_DefaultReflectionResolution: 128
+  m_ReflectionBounces: 1
+  m_ReflectionIntensity: 1
+  m_CustomReflection: {fileID: 0}
+  m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0.39137825, g: 0.4350186, b: 0.5037276, a: 1}
+  m_UseRadianceAmbientProbe: 0
+--- !u!157 &3
+LightmapSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 11
+  m_GIWorkflowMode: 0
+  m_GISettings:
+    serializedVersion: 2
+    m_BounceScale: 1
+    m_IndirectOutputScale: 1
+    m_AlbedoBoost: 1
+    m_EnvironmentLightingMode: 0
+    m_EnableBakedLightmaps: 1
+    m_EnableRealtimeLightmaps: 1
+  m_LightmapEditorSettings:
+    serializedVersion: 10
+    m_Resolution: 2
+    m_BakeResolution: 40
+    m_AtlasSize: 1024
+    m_AO: 0
+    m_AOMaxDistance: 1
+    m_CompAOExponent: 1
+    m_CompAOExponentDirect: 0
+    m_Padding: 2
+    m_LightmapParameters: {fileID: 0}
+    m_LightmapsBakeMode: 1
+    m_TextureCompression: 1
+    m_FinalGather: 0
+    m_FinalGatherFiltering: 1
+    m_FinalGatherRayCount: 256
+    m_ReflectionCompression: 2
+    m_MixedBakeMode: 2
+    m_BakeBackend: 1
+    m_PVRSampling: 1
+    m_PVRDirectSampleCount: 32
+    m_PVRSampleCount: 500
+    m_PVRBounces: 2
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
+    m_PVRFilteringMode: 1
+    m_PVRCulling: 1
+    m_PVRFilteringGaussRadiusDirect: 1
+    m_PVRFilteringGaussRadiusIndirect: 5
+    m_PVRFilteringGaussRadiusAO: 2
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ShowResolutionOverlay: 1
+  m_LightingDataAsset: {fileID: 0}
+  m_UseShadowmask: 1
+--- !u!196 &4
+NavMeshSettings:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_BuildSettings:
+    serializedVersion: 2
+    agentTypeID: 0
+    agentRadius: 0.5
+    agentHeight: 2
+    agentSlope: 45
+    agentClimb: 0.4
+    ledgeDropHeight: 0
+    maxJumpAcrossDistance: 0
+    minRegionArea: 2
+    manualCellSize: 0
+    cellSize: 0.16666667
+    manualTileSize: 0
+    tileSize: 256
+    accuratePlacement: 0
+    debug:
+      m_Flags: 0
+  m_NavMeshData: {fileID: 0}
+--- !u!1 &266232872
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 266232874}
+  m_Layer: 0
+  m_Name: Statistic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &266232874
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266232872}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.6494226, y: -0.7299385, z: 1.3319211}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &342211749
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 342211754}
+  - component: {fileID: 342211753}
+  - component: {fileID: 342211752}
+  - component: {fileID: 342211751}
+  - component: {fileID: 342211750}
+  - component: {fileID: 342211755}
+  m_Layer: 0
+  m_Name: TopDown (15)
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &342211750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342211749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8cf881c61db944db96e4168ed61e56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numRays: 16
+  _rayLength: 50
+  _wallMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _holeMask:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!114 &342211751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342211749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cce913f7b88e3e4c9b7569ba71fa106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 1500
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 1
+  mazeLoader: {fileID: 342211752}
+  agentInteraction: {fileID: 342211750}
+  mazeAcademy: {fileID: 2056088224}
+  statistic_Writter: {fileID: 342211755}
+  index: 0
+  useCurriculum: 0
+  useRandomSpawn: 0
+  noise: 0
+--- !u!114 &342211752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342211749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54443c9465ed9e46bdb62fd2d35f25a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeRows: 3
+  mazeColumns: 3
+  ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
+  mazeParent: {fileID: 342211749}
+  wall: {fileID: 1941908172350853885, guid: a40995e7a60135843a89fc57e9dbd66c, type: 3}
+  trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
+  goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
+  criticalOnly: 0
+  tokens: 010000000200000004000000
+  difficulty: 0.2
+  token: 0
+  spawnPos: []
+  restart: 0
+  maze: {fileID: 342211749}
+--- !u!114 &342211753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342211749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    vectorObservationSize: 166
+    numStackedVectorObservations: 2
+    vectorActionSize: 0500000005000000
+    vectorActionDescriptions: []
+    vectorActionSpaceType: 0
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: sparse
+  m_TeamID: 0
+  m_useChildSensors: 1
+--- !u!4 &342211754
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342211749}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 50}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &342211755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342211749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1faa05e6ebc124298f2e3187a084af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &450275728
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 450275733}
+  - component: {fileID: 450275732}
+  - component: {fileID: 450275731}
+  - component: {fileID: 450275730}
+  - component: {fileID: 450275729}
+  - component: {fileID: 450275734}
+  m_Layer: 0
+  m_Name: TopDown (10)
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &450275729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450275728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8cf881c61db944db96e4168ed61e56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numRays: 16
+  _rayLength: 50
+  _wallMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _holeMask:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!114 &450275730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450275728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cce913f7b88e3e4c9b7569ba71fa106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 1500
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 1
+  mazeLoader: {fileID: 450275731}
+  agentInteraction: {fileID: 450275729}
+  mazeAcademy: {fileID: 2056088224}
+  statistic_Writter: {fileID: 450275734}
+  index: 0
+  useCurriculum: 0
+  useRandomSpawn: 0
+  noise: 0
+--- !u!114 &450275731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450275728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54443c9465ed9e46bdb62fd2d35f25a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeRows: 3
+  mazeColumns: 3
+  ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
+  mazeParent: {fileID: 450275728}
+  wall: {fileID: 1941908172350853885, guid: a40995e7a60135843a89fc57e9dbd66c, type: 3}
+  trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
+  goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
+  criticalOnly: 0
+  tokens: 010000000200000004000000
+  difficulty: 0.2
+  token: 0
+  spawnPos: []
+  restart: 0
+  maze: {fileID: 450275728}
+--- !u!114 &450275732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450275728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    vectorObservationSize: 166
+    numStackedVectorObservations: 2
+    vectorActionSize: 0500000005000000
+    vectorActionDescriptions: []
+    vectorActionSpaceType: 0
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: sparse
+  m_TeamID: 0
+  m_useChildSensors: 1
+--- !u!4 &450275733
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450275728}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 50, y: 150, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &450275734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450275728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1faa05e6ebc124298f2e3187a084af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &451782885
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 451782890}
+  - component: {fileID: 451782889}
+  - component: {fileID: 451782888}
+  - component: {fileID: 451782887}
+  - component: {fileID: 451782886}
+  - component: {fileID: 451782891}
+  m_Layer: 0
+  m_Name: TopDown (8)
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &451782886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451782885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8cf881c61db944db96e4168ed61e56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numRays: 16
+  _rayLength: 50
+  _wallMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _holeMask:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!114 &451782887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451782885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cce913f7b88e3e4c9b7569ba71fa106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 1500
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 1
+  mazeLoader: {fileID: 451782888}
+  agentInteraction: {fileID: 451782886}
+  mazeAcademy: {fileID: 2056088224}
+  statistic_Writter: {fileID: 451782891}
+  index: 0
+  useCurriculum: 0
+  useRandomSpawn: 0
+  noise: 0
+--- !u!114 &451782888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451782885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54443c9465ed9e46bdb62fd2d35f25a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeRows: 3
+  mazeColumns: 3
+  ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
+  mazeParent: {fileID: 451782885}
+  wall: {fileID: 1941908172350853885, guid: a40995e7a60135843a89fc57e9dbd66c, type: 3}
+  trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
+  goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
+  criticalOnly: 0
+  tokens: 010000000200000004000000
+  difficulty: 0.2
+  token: 0
+  spawnPos: []
+  restart: 0
+  maze: {fileID: 451782885}
+--- !u!114 &451782889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451782885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    vectorObservationSize: 166
+    numStackedVectorObservations: 2
+    vectorActionSize: 0500000005000000
+    vectorActionDescriptions: []
+    vectorActionSpaceType: 0
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: sparse
+  m_TeamID: 0
+  m_useChildSensors: 1
+--- !u!4 &451782890
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451782885}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 100, y: 100, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &451782891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451782885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1faa05e6ebc124298f2e3187a084af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &511305253
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 511305255}
+  - component: {fileID: 511305254}
+  m_Layer: 0
+  m_Name: Directional Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &511305254
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511305253}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 1
+  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &511305255
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511305253}
+  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &564410043
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 564410048}
+  - component: {fileID: 564410047}
+  - component: {fileID: 564410046}
+  - component: {fileID: 564410045}
+  - component: {fileID: 564410044}
+  - component: {fileID: 564410049}
+  m_Layer: 0
+  m_Name: TopDown (5)
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &564410044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564410043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8cf881c61db944db96e4168ed61e56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numRays: 16
+  _rayLength: 50
+  _wallMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _holeMask:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!114 &564410045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564410043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cce913f7b88e3e4c9b7569ba71fa106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 1500
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 1
+  mazeLoader: {fileID: 564410046}
+  agentInteraction: {fileID: 564410044}
+  mazeAcademy: {fileID: 2056088224}
+  statistic_Writter: {fileID: 564410049}
+  index: 0
+  useCurriculum: 0
+  useRandomSpawn: 0
+  noise: 0
+--- !u!114 &564410046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564410043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54443c9465ed9e46bdb62fd2d35f25a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeRows: 3
+  mazeColumns: 3
+  ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
+  mazeParent: {fileID: 564410043}
+  wall: {fileID: 1941908172350853885, guid: a40995e7a60135843a89fc57e9dbd66c, type: 3}
+  trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
+  goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
+  criticalOnly: 0
+  tokens: 010000000200000004000000
+  difficulty: 0.2
+  token: 0
+  spawnPos: []
+  restart: 0
+  maze: {fileID: 564410043}
+--- !u!114 &564410047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564410043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    vectorObservationSize: 166
+    numStackedVectorObservations: 2
+    vectorActionSize: 0500000005000000
+    vectorActionDescriptions: []
+    vectorActionSpaceType: 0
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: sparse
+  m_TeamID: 0
+  m_useChildSensors: 1
+--- !u!4 &564410048
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564410043}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 100, y: 50, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &564410049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 564410043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1faa05e6ebc124298f2e3187a084af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &788909828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 788909833}
+  - component: {fileID: 788909832}
+  - component: {fileID: 788909831}
+  - component: {fileID: 788909830}
+  - component: {fileID: 788909829}
+  - component: {fileID: 788909834}
+  m_Layer: 0
+  m_Name: TopDown (11)
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &788909829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788909828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8cf881c61db944db96e4168ed61e56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numRays: 16
+  _rayLength: 50
+  _wallMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _holeMask:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!114 &788909830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788909828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cce913f7b88e3e4c9b7569ba71fa106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 1500
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 1
+  mazeLoader: {fileID: 788909831}
+  agentInteraction: {fileID: 788909829}
+  mazeAcademy: {fileID: 2056088224}
+  statistic_Writter: {fileID: 788909834}
+  index: 0
+  useCurriculum: 0
+  useRandomSpawn: 0
+  noise: 0
+--- !u!114 &788909831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788909828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54443c9465ed9e46bdb62fd2d35f25a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeRows: 3
+  mazeColumns: 3
+  ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
+  mazeParent: {fileID: 788909828}
+  wall: {fileID: 1941908172350853885, guid: a40995e7a60135843a89fc57e9dbd66c, type: 3}
+  trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
+  goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
+  criticalOnly: 0
+  tokens: 010000000200000004000000
+  difficulty: 0.2
+  token: 0
+  spawnPos: []
+  restart: 0
+  maze: {fileID: 788909828}
+--- !u!114 &788909832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788909828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    vectorObservationSize: 166
+    numStackedVectorObservations: 2
+    vectorActionSize: 0500000005000000
+    vectorActionDescriptions: []
+    vectorActionSpaceType: 0
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: sparse
+  m_TeamID: 0
+  m_useChildSensors: 1
+--- !u!4 &788909833
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788909828}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 100, y: 150, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &788909834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788909828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1faa05e6ebc124298f2e3187a084af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &870145343
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 870145348}
+  - component: {fileID: 870145347}
+  - component: {fileID: 870145346}
+  - component: {fileID: 870145345}
+  - component: {fileID: 870145344}
+  - component: {fileID: 870145349}
+  m_Layer: 0
+  m_Name: TopDown (14)
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &870145344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870145343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8cf881c61db944db96e4168ed61e56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numRays: 16
+  _rayLength: 50
+  _wallMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _holeMask:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!114 &870145345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870145343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cce913f7b88e3e4c9b7569ba71fa106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 1500
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 1
+  mazeLoader: {fileID: 870145346}
+  agentInteraction: {fileID: 870145344}
+  mazeAcademy: {fileID: 2056088224}
+  statistic_Writter: {fileID: 870145349}
+  index: 0
+  useCurriculum: 0
+  useRandomSpawn: 0
+  noise: 0
+--- !u!114 &870145346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870145343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54443c9465ed9e46bdb62fd2d35f25a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeRows: 3
+  mazeColumns: 3
+  ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
+  mazeParent: {fileID: 870145343}
+  wall: {fileID: 1941908172350853885, guid: a40995e7a60135843a89fc57e9dbd66c, type: 3}
+  trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
+  goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
+  criticalOnly: 0
+  tokens: 010000000200000004000000
+  difficulty: 0.2
+  token: 0
+  spawnPos: []
+  restart: 0
+  maze: {fileID: 870145343}
+--- !u!114 &870145347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870145343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    vectorObservationSize: 166
+    numStackedVectorObservations: 2
+    vectorActionSize: 0500000005000000
+    vectorActionDescriptions: []
+    vectorActionSpaceType: 0
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: sparse
+  m_TeamID: 0
+  m_useChildSensors: 1
+--- !u!4 &870145348
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870145343}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 100, y: 200, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &870145349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870145343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1faa05e6ebc124298f2e3187a084af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1061058250
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1061058255}
+  - component: {fileID: 1061058254}
+  - component: {fileID: 1061058253}
+  - component: {fileID: 1061058252}
+  - component: {fileID: 1061058251}
+  - component: {fileID: 1061058256}
+  m_Layer: 0
+  m_Name: TopDown (4)
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1061058251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061058250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8cf881c61db944db96e4168ed61e56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numRays: 16
+  _rayLength: 50
+  _wallMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _holeMask:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!114 &1061058252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061058250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cce913f7b88e3e4c9b7569ba71fa106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 1500
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 1
+  mazeLoader: {fileID: 1061058253}
+  agentInteraction: {fileID: 1061058251}
+  mazeAcademy: {fileID: 2056088224}
+  statistic_Writter: {fileID: 1061058256}
+  index: 0
+  useCurriculum: 0
+  useRandomSpawn: 0
+  noise: 0
+--- !u!114 &1061058253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061058250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54443c9465ed9e46bdb62fd2d35f25a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeRows: 3
+  mazeColumns: 3
+  ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
+  mazeParent: {fileID: 1061058250}
+  wall: {fileID: 1941908172350853885, guid: a40995e7a60135843a89fc57e9dbd66c, type: 3}
+  trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
+  goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
+  criticalOnly: 0
+  tokens: 010000000200000004000000
+  difficulty: 0.2
+  token: 0
+  spawnPos: []
+  restart: 0
+  maze: {fileID: 1061058250}
+--- !u!114 &1061058254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061058250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    vectorObservationSize: 166
+    numStackedVectorObservations: 2
+    vectorActionSize: 0500000005000000
+    vectorActionDescriptions: []
+    vectorActionSpaceType: 0
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: sparse
+  m_TeamID: 0
+  m_useChildSensors: 1
+--- !u!4 &1061058255
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061058250}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 50, y: 50, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1061058256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061058250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1faa05e6ebc124298f2e3187a084af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1199141533
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1199141538}
+  - component: {fileID: 1199141537}
+  - component: {fileID: 1199141536}
+  - component: {fileID: 1199141535}
+  - component: {fileID: 1199141534}
+  - component: {fileID: 1199141539}
+  m_Layer: 0
+  m_Name: TopDown (2)
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1199141534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199141533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8cf881c61db944db96e4168ed61e56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numRays: 16
+  _rayLength: 50
+  _wallMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _holeMask:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!114 &1199141535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199141533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cce913f7b88e3e4c9b7569ba71fa106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 1500
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 1
+  mazeLoader: {fileID: 1199141536}
+  agentInteraction: {fileID: 1199141534}
+  mazeAcademy: {fileID: 2056088224}
+  statistic_Writter: {fileID: 1199141539}
+  index: 0
+  useCurriculum: 0
+  useRandomSpawn: 0
+  noise: 0
+--- !u!114 &1199141536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199141533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54443c9465ed9e46bdb62fd2d35f25a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeRows: 3
+  mazeColumns: 3
+  ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
+  mazeParent: {fileID: 1199141533}
+  wall: {fileID: 1941908172350853885, guid: a40995e7a60135843a89fc57e9dbd66c, type: 3}
+  trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
+  goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
+  criticalOnly: 0
+  tokens: 010000000200000004000000
+  difficulty: 0.2
+  token: 0
+  spawnPos: []
+  restart: 0
+  maze: {fileID: 1199141533}
+--- !u!114 &1199141537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199141533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    vectorObservationSize: 166
+    numStackedVectorObservations: 2
+    vectorActionSize: 0500000005000000
+    vectorActionDescriptions: []
+    vectorActionSpaceType: 0
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: sparse
+  m_TeamID: 0
+  m_useChildSensors: 1
+--- !u!4 &1199141538
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199141533}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 100, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1199141539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199141533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1faa05e6ebc124298f2e3187a084af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1222817206
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1222817211}
+  - component: {fileID: 1222817210}
+  - component: {fileID: 1222817209}
+  - component: {fileID: 1222817208}
+  - component: {fileID: 1222817207}
+  - component: {fileID: 1222817212}
+  m_Layer: 0
+  m_Name: TopDown (1)
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1222817207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222817206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8cf881c61db944db96e4168ed61e56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numRays: 16
+  _rayLength: 50
+  _wallMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _holeMask:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!114 &1222817208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222817206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cce913f7b88e3e4c9b7569ba71fa106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 1500
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 1
+  mazeLoader: {fileID: 1222817209}
+  agentInteraction: {fileID: 1222817207}
+  mazeAcademy: {fileID: 2056088224}
+  statistic_Writter: {fileID: 1222817212}
+  index: 0
+  useCurriculum: 0
+  useRandomSpawn: 0
+  noise: 0
+--- !u!114 &1222817209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222817206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54443c9465ed9e46bdb62fd2d35f25a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeRows: 3
+  mazeColumns: 3
+  ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
+  mazeParent: {fileID: 1222817206}
+  wall: {fileID: 1941908172350853885, guid: a40995e7a60135843a89fc57e9dbd66c, type: 3}
+  trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
+  goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
+  criticalOnly: 0
+  tokens: 010000000200000004000000
+  difficulty: 0.2
+  token: 0
+  spawnPos: []
+  restart: 0
+  maze: {fileID: 1222817206}
+--- !u!114 &1222817210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222817206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    vectorObservationSize: 166
+    numStackedVectorObservations: 2
+    vectorActionSize: 0500000005000000
+    vectorActionDescriptions: []
+    vectorActionSpaceType: 0
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: sparse
+  m_TeamID: 0
+  m_useChildSensors: 1
+--- !u!4 &1222817211
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222817206}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 50, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1222817212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222817206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1faa05e6ebc124298f2e3187a084af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1572248509
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1572248512}
+  - component: {fileID: 1572248511}
+  - component: {fileID: 1572248510}
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!81 &1572248510
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572248509}
+  m_Enabled: 1
+--- !u!20 &1572248511
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572248509}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_GateFitMode: 2
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &1572248512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572248509}
+  m_LocalRotation: {x: 0.60900897, y: -0, z: -0, w: 0.79316336}
+  m_LocalPosition: {x: 28, y: 207.4, z: -24.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 75.036, y: 0, z: 0}
+--- !u!1 &1589387073
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1589387078}
+  - component: {fileID: 1589387077}
+  - component: {fileID: 1589387076}
+  - component: {fileID: 1589387075}
+  - component: {fileID: 1589387074}
+  - component: {fileID: 1589387079}
+  m_Layer: 0
+  m_Name: TopDown (12)
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1589387074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589387073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8cf881c61db944db96e4168ed61e56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numRays: 16
+  _rayLength: 50
+  _wallMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _holeMask:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!114 &1589387075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589387073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cce913f7b88e3e4c9b7569ba71fa106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 1500
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 1
+  mazeLoader: {fileID: 1589387076}
+  agentInteraction: {fileID: 1589387074}
+  mazeAcademy: {fileID: 2056088224}
+  statistic_Writter: {fileID: 1589387079}
+  index: 0
+  useCurriculum: 0
+  useRandomSpawn: 0
+  noise: 0
+--- !u!114 &1589387076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589387073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54443c9465ed9e46bdb62fd2d35f25a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeRows: 3
+  mazeColumns: 3
+  ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
+  mazeParent: {fileID: 1589387073}
+  wall: {fileID: 1941908172350853885, guid: a40995e7a60135843a89fc57e9dbd66c, type: 3}
+  trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
+  goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
+  criticalOnly: 0
+  tokens: 010000000200000004000000
+  difficulty: 0.2
+  token: 0
+  spawnPos: []
+  restart: 0
+  maze: {fileID: 1589387073}
+--- !u!114 &1589387077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589387073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    vectorObservationSize: 166
+    numStackedVectorObservations: 2
+    vectorActionSize: 0500000005000000
+    vectorActionDescriptions: []
+    vectorActionSpaceType: 0
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: sparse
+  m_TeamID: 0
+  m_useChildSensors: 1
+--- !u!4 &1589387078
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589387073}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 200, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1589387079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589387073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1faa05e6ebc124298f2e3187a084af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1715976600
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1715976605}
+  - component: {fileID: 1715976604}
+  - component: {fileID: 1715976603}
+  - component: {fileID: 1715976602}
+  - component: {fileID: 1715976601}
+  - component: {fileID: 1715976606}
+  m_Layer: 0
+  m_Name: TopDown (9)
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1715976601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715976600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8cf881c61db944db96e4168ed61e56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numRays: 16
+  _rayLength: 50
+  _wallMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _holeMask:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!114 &1715976602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715976600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cce913f7b88e3e4c9b7569ba71fa106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 1500
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 1
+  mazeLoader: {fileID: 1715976603}
+  agentInteraction: {fileID: 1715976601}
+  mazeAcademy: {fileID: 2056088224}
+  statistic_Writter: {fileID: 1715976606}
+  index: 0
+  useCurriculum: 0
+  useRandomSpawn: 0
+  noise: 0
+--- !u!114 &1715976603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715976600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54443c9465ed9e46bdb62fd2d35f25a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeRows: 3
+  mazeColumns: 3
+  ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
+  mazeParent: {fileID: 1715976600}
+  wall: {fileID: 1941908172350853885, guid: a40995e7a60135843a89fc57e9dbd66c, type: 3}
+  trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
+  goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
+  criticalOnly: 0
+  tokens: 010000000200000004000000
+  difficulty: 0.2
+  token: 0
+  spawnPos: []
+  restart: 0
+  maze: {fileID: 1715976600}
+--- !u!114 &1715976604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715976600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    vectorObservationSize: 166
+    numStackedVectorObservations: 2
+    vectorActionSize: 0500000005000000
+    vectorActionDescriptions: []
+    vectorActionSpaceType: 0
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: sparse
+  m_TeamID: 0
+  m_useChildSensors: 1
+--- !u!4 &1715976605
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715976600}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 150, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1715976606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715976600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1faa05e6ebc124298f2e3187a084af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1772974610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1772974615}
+  - component: {fileID: 1772974614}
+  - component: {fileID: 1772974613}
+  - component: {fileID: 1772974612}
+  - component: {fileID: 1772974611}
+  - component: {fileID: 1772974616}
+  m_Layer: 0
+  m_Name: TopDown (13)
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1772974611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772974610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8cf881c61db944db96e4168ed61e56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numRays: 16
+  _rayLength: 50
+  _wallMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _holeMask:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!114 &1772974612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772974610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cce913f7b88e3e4c9b7569ba71fa106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 1500
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 1
+  mazeLoader: {fileID: 1772974613}
+  agentInteraction: {fileID: 1772974611}
+  mazeAcademy: {fileID: 2056088224}
+  statistic_Writter: {fileID: 1772974616}
+  index: 0
+  useCurriculum: 0
+  useRandomSpawn: 0
+  noise: 0
+--- !u!114 &1772974613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772974610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54443c9465ed9e46bdb62fd2d35f25a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeRows: 3
+  mazeColumns: 3
+  ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
+  mazeParent: {fileID: 1772974610}
+  wall: {fileID: 1941908172350853885, guid: a40995e7a60135843a89fc57e9dbd66c, type: 3}
+  trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
+  goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
+  criticalOnly: 0
+  tokens: 010000000200000004000000
+  difficulty: 0.2
+  token: 0
+  spawnPos: []
+  restart: 0
+  maze: {fileID: 1772974610}
+--- !u!114 &1772974614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772974610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    vectorObservationSize: 166
+    numStackedVectorObservations: 2
+    vectorActionSize: 0500000005000000
+    vectorActionDescriptions: []
+    vectorActionSpaceType: 0
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: sparse
+  m_TeamID: 0
+  m_useChildSensors: 1
+--- !u!4 &1772974615
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772974610}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 50, y: 200, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 18
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1772974616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772974610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1faa05e6ebc124298f2e3187a084af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &2056088223
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2056088225}
+  - component: {fileID: 2056088224}
+  m_Layer: 0
+  m_Name: Academy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2056088224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056088223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0031e311669d3174a8b6dd552f84ffdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+--- !u!4 &2056088225
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056088223}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.9396448, y: 0, z: 0.03486642}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2107337679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2107337684}
+  - component: {fileID: 2107337683}
+  - component: {fileID: 2107337682}
+  - component: {fileID: 2107337681}
+  - component: {fileID: 2107337680}
+  - component: {fileID: 2107337685}
+  m_Layer: 0
+  m_Name: TopDown (6)
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2107337680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107337679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8cf881c61db944db96e4168ed61e56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numRays: 16
+  _rayLength: 50
+  _wallMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _holeMask:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!114 &2107337681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107337679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cce913f7b88e3e4c9b7569ba71fa106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 1500
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 1
+  mazeLoader: {fileID: 2107337682}
+  agentInteraction: {fileID: 2107337680}
+  mazeAcademy: {fileID: 2056088224}
+  statistic_Writter: {fileID: 2107337685}
+  index: 0
+  useCurriculum: 0
+  useRandomSpawn: 0
+  noise: 0
+--- !u!114 &2107337682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107337679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54443c9465ed9e46bdb62fd2d35f25a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeRows: 3
+  mazeColumns: 3
+  ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
+  mazeParent: {fileID: 2107337679}
+  wall: {fileID: 1941908172350853885, guid: a40995e7a60135843a89fc57e9dbd66c, type: 3}
+  trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
+  goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
+  criticalOnly: 0
+  tokens: 010000000200000004000000
+  difficulty: 0.2
+  token: 0
+  spawnPos: []
+  restart: 0
+  maze: {fileID: 2107337679}
+--- !u!114 &2107337683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107337679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    vectorObservationSize: 166
+    numStackedVectorObservations: 2
+    vectorActionSize: 0500000005000000
+    vectorActionDescriptions: []
+    vectorActionSpaceType: 0
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: sparse
+  m_TeamID: 0
+  m_useChildSensors: 1
+--- !u!4 &2107337684
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107337679}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 100, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2107337685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107337679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1faa05e6ebc124298f2e3187a084af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &2139409856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2139409861}
+  - component: {fileID: 2139409860}
+  - component: {fileID: 2139409859}
+  - component: {fileID: 2139409858}
+  - component: {fileID: 2139409857}
+  - component: {fileID: 2139409862}
+  m_Layer: 0
+  m_Name: TopDown (7)
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2139409857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139409856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8cf881c61db944db96e4168ed61e56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numRays: 16
+  _rayLength: 50
+  _wallMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _holeMask:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!114 &2139409858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139409856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cce913f7b88e3e4c9b7569ba71fa106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 1500
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 1
+  mazeLoader: {fileID: 2139409859}
+  agentInteraction: {fileID: 2139409857}
+  mazeAcademy: {fileID: 2056088224}
+  statistic_Writter: {fileID: 2139409862}
+  index: 0
+  useCurriculum: 0
+  useRandomSpawn: 0
+  noise: 0
+--- !u!114 &2139409859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139409856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54443c9465ed9e46bdb62fd2d35f25a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeRows: 3
+  mazeColumns: 3
+  ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
+  mazeParent: {fileID: 2139409856}
+  wall: {fileID: 1941908172350853885, guid: a40995e7a60135843a89fc57e9dbd66c, type: 3}
+  trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
+  goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
+  criticalOnly: 0
+  tokens: 010000000200000004000000
+  difficulty: 0.2
+  token: 0
+  spawnPos: []
+  restart: 0
+  maze: {fileID: 2139409856}
+--- !u!114 &2139409860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139409856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    vectorObservationSize: 166
+    numStackedVectorObservations: 2
+    vectorActionSize: 0500000005000000
+    vectorActionDescriptions: []
+    vectorActionSpaceType: 0
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: sparse
+  m_TeamID: 0
+  m_useChildSensors: 1
+--- !u!4 &2139409861
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139409856}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 50, y: 100, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2139409862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139409856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1faa05e6ebc124298f2e3187a084af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &2139966721
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2139966726}
+  - component: {fileID: 2139966725}
+  - component: {fileID: 2139966724}
+  - component: {fileID: 2139966723}
+  - component: {fileID: 2139966722}
+  - component: {fileID: 2139966727}
+  m_Layer: 0
+  m_Name: TopDown (3)
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2139966722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139966721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8cf881c61db944db96e4168ed61e56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numRays: 16
+  _rayLength: 50
+  _wallMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _holeMask:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!114 &2139966723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139966721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cce913f7b88e3e4c9b7569ba71fa106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 1500
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 1
+  mazeLoader: {fileID: 2139966724}
+  agentInteraction: {fileID: 2139966722}
+  mazeAcademy: {fileID: 2056088224}
+  statistic_Writter: {fileID: 2139966727}
+  index: 0
+  useCurriculum: 0
+  useRandomSpawn: 0
+  noise: 0
+--- !u!114 &2139966724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139966721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54443c9465ed9e46bdb62fd2d35f25a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeRows: 3
+  mazeColumns: 3
+  ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
+  mazeParent: {fileID: 2139966721}
+  wall: {fileID: 1941908172350853885, guid: a40995e7a60135843a89fc57e9dbd66c, type: 3}
+  trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
+  goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
+  criticalOnly: 0
+  tokens: 010000000200000004000000
+  difficulty: 0.2
+  token: 0
+  spawnPos: []
+  restart: 0
+  maze: {fileID: 2139966721}
+--- !u!114 &2139966725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139966721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    vectorObservationSize: 166
+    numStackedVectorObservations: 2
+    vectorActionSize: 0500000005000000
+    vectorActionDescriptions: []
+    vectorActionSpaceType: 0
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: sparse
+  m_TeamID: 0
+  m_useChildSensors: 1
+--- !u!4 &2139966726
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139966721}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 50, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2139966727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139966721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1faa05e6ebc124298f2e3187a084af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &7276161849628875096
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7276161849628875098}
+  - component: {fileID: 7276161849628875103}
+  - component: {fileID: 7276161849628875100}
+  - component: {fileID: 7276161849628875099}
+  - component: {fileID: 7276161849628875097}
+  - component: {fileID: 7276161849628875101}
+  m_Layer: 0
+  m_Name: TopDown (0)
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &7276161849628875097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7276161849628875096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc8cf881c61db944db96e4168ed61e56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numRays: 16
+  _rayLength: 50
+  _wallMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _holeMask:
+    serializedVersion: 2
+    m_Bits: 1024
+--- !u!4 &7276161849628875098
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7276161849628875096}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7276161849628875099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7276161849628875096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cce913f7b88e3e4c9b7569ba71fa106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 1500
+    resetOnDone: 1
+    onDemandDecision: 0
+    numberOfActionsBetweenDecisions: 1
+  mazeLoader: {fileID: 7276161849628875100}
+  agentInteraction: {fileID: 7276161849628875097}
+  mazeAcademy: {fileID: 2056088224}
+  statistic_Writter: {fileID: 7276161849628875101}
+  index: 0
+  useCurriculum: 0
+  useRandomSpawn: 0
+  noise: 0
+--- !u!114 &7276161849628875100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7276161849628875096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54443c9465ed9e46bdb62fd2d35f25a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mazeRows: 3
+  mazeColumns: 3
+  ball: {fileID: 4992701753524514584, guid: 2fc4146e5016dd04c8e5b53e37b238f4, type: 3}
+  mazeParent: {fileID: 7276161849628875096}
+  wall: {fileID: 1941908172350853885, guid: a40995e7a60135843a89fc57e9dbd66c, type: 3}
+  trap: {fileID: 6539344775106814870, guid: a81f8aa2b9146e64289d7d10ab4da5b0, type: 3}
+  goal: {fileID: 5886704444007852046, guid: 50d6e7d2456f994498b489efcf5692a9, type: 3}
+  criticalOnly: 0
+  tokens: 010000000200000004000000
+  difficulty: 0.2
+  token: 0
+  spawnPos: []
+  restart: 0
+  maze: {fileID: 7276161849628875096}
+--- !u!114 &7276161849628875101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7276161849628875096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1faa05e6ebc124298f2e3187a084af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7276161849628875103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7276161849628875096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    vectorObservationSize: 166
+    numStackedVectorObservations: 2
+    vectorActionSize: 0500000005000000
+    vectorActionDescriptions: []
+    vectorActionSpaceType: 0
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: sparse
+  m_TeamID: 0
+  m_useChildSensors: 1

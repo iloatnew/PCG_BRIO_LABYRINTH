@@ -18,6 +18,7 @@ public class HuntAndKillMutated : MazeAlgorithm
 
 	private MazeHelp mazeHelp;
 	private ProceduralNumberGenerator png;
+	public List<MazeCell> solutionPath;
 
 	public HuntAndKillMutated(MazeCell[,] mazeCells) : base(mazeCells)
 	{
@@ -49,7 +50,7 @@ public class HuntAndKillMutated : MazeAlgorithm
 		}
 		
 		mazeHelp.dFSMazeMutator.DFS();
-		
+		solutionPath = mazeHelp.dFSMazeMutator.solutionPath;
 	}
 
 

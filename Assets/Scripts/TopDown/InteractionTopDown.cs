@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 public class InteractionTopDown : MonoBehaviour
@@ -38,15 +39,18 @@ public class InteractionTopDown : MonoBehaviour
 	/// Collects the ball's state, size = (massMaze * 5) + (4 * numTrap) + 32; maxsize = (massMaze + 4) * 10 
 	/// </summary>
 	/// <returns>Returns a list of features to describe the ball's state. Features: Ball position in relation to the final hole, several raycasts to sense its surroundings and its velocity.</returns>
-	public List<float> CollectBallState(Rigidbody _rigidbody, LoaderTopDown mazeLoader )
+	public List<float> CollectBallState(Rigidbody _rigidbody, LoaderTopDown mazeLoader)
 	{
 		GameObject ball = mazeLoader.GetPlayer();
 		Transform _targetGoal = mazeLoader.GetGoal().transform;
 		GameObject _agent = this.gameObject;
-		MazeCellSerial[,] mazeCells = mazeLoader.GetMazeCells();
 
+		List<MazeCell> solutionPath = mazeLoader.GetSolutionPath();
+		MazeCell[,] mazeCells = mazeLoader.GetMazeCells();
+		
 		List<float> ballState = new List<float>();
 
+		
 		// (num mazeCells * 5) floats: the layout of maze
 		for (int r = 0; r < mazeLoader.mazeRows; r++)
 		{
@@ -59,51 +63,64 @@ public class InteractionTopDown : MonoBehaviour
 			}
 		}
 
+		if (mazeLoader.mazeRows * mazeLoader.mazeColumns < 120)
+		{
+			int cnt = 120 - (mazeLoader.mazeRows * mazeLoader.mazeColumns*5);
+			while (cnt > 0)
+			{
+				ballState.Add(1);
+				cnt--;
+			}
+		}
+
 		// 1 floats: 1/0 In Critic path or not
-		ballState.AddRange(AddRouteStates(mazeCells, ball, _agent));
-	
+		ballState.AddRange(AddRouteStates(mazeCells, solutionPath, ball, _agent));
+
 		// 2 floats: rotation x, z
-		ballState.Add(transform.rotation.eulerAngles.x);
-		ballState.Add(transform.rotation.eulerAngles.z);
+
+		Vector3 normalized = NormalizeDeg(transform.rotation.eulerAngles);
+		ballState.Add(normalized.x);
+		ballState.Add(normalized.z);
+
 
 		// 3 floats: Add velocity
-		Vector3 normalizedVelocity = _rigidbody.velocity.normalized;
+		Vector3 normalizedVelocity = NormalizeVel(_rigidbody.velocity, -10, 10);
 		ballState.Add(normalizedVelocity.x);
 		ballState.Add(normalizedVelocity.y);
 		ballState.Add(normalizedVelocity.z);
 
 		// 3 floats: Add position of the ball 
-		Vector3 ballPosition = ball.transform.position;
+		Vector3 ballPosition = NormalizePos(ball.transform.position, mazeLoader.GetSize(), mazeLoader.mazeRows, mazeLoader.mazeColumns);
 		ballState.Add(ballPosition.x);
 		ballState.Add(ballPosition.y);
 		ballState.Add(ballPosition.z);
 
 		// 2 floats: Add position of the goal 
-		Vector3 goalPosition = _targetGoal.transform.position;
+		Vector3 goalPosition = NormalizePos(_targetGoal.transform.position, mazeLoader.GetSize(), mazeLoader.mazeRows, mazeLoader.mazeColumns);
 		ballState.Add(goalPosition.x);
 		ballState.Add(goalPosition.z);
 
 		// 2 floats: Add relative position of the ball to the goal
-		Vector3 relativePosition = ball.transform.position - _targetGoal.position;
+		Vector3 relativePosition = goalPosition - ballPosition;
 		ballState.Add(relativePosition.x);
 		ballState.Add(relativePosition.z);
 
 		// 1 float: absolute distance from ball to goal
-		ballState.Add(Math.Abs(Vector3.Distance(ball.transform.position, _targetGoal.position)));
+		ballState.Add(Math.Abs(Vector3.Distance(goalPosition, ballPosition)));
 
-		// num Trap * 4 floats: x & z positions of traps, relative x & z positions from ball toward traps  
-		foreach (Transform child in transform)
-		{
-			if (child.name.Contains("Trap"))
-			{
-				ballState.Add(child.position.x);
-				ballState.Add(child.position.z);
+		//// num Trap * 4 floats: x & z positions of traps, relative x & z positions from ball toward traps  
+		//foreach (Transform child in transform)
+		//{
+		//	if (child.name.Contains("Trap"))
+		//	{
+		//		ballState.Add(child.position.x);
+		//		ballState.Add(child.position.z);
 
-				Vector3 relativePositionToTrap = ball.transform.position - child.position;
-				ballState.Add(relativePositionToTrap.x);
-				ballState.Add(relativePositionToTrap.z);
-			}
-		}
+		//		Vector3 relativePositionToTrap = ball.transform.position - child.position;
+		//		ballState.Add(relativePositionToTrap.x);
+		//		ballState.Add(relativePositionToTrap.z);
+		//	}
+		//}
 
 
 		// Raycast surroundings
@@ -115,12 +132,6 @@ public class InteractionTopDown : MonoBehaviour
 			Vector3 rayDirection = Quaternion.AngleAxis(step * i, _agent.transform.up) * _agent.transform.forward;
 			rays[i] = new Ray(ball.transform.position, rayDirection);
 		}
-
-		//// Draw rays for debugging
-		//foreach (var ray in rays)
-		//{
-		//	Debug.DrawLine(ray.origin, ray.origin + ray.direction * _rayLength, Color.red);
-		//}
 
 		// 16 floats: Execute raycasts on walls
 		foreach (var ray in rays)
@@ -137,36 +148,37 @@ public class InteractionTopDown : MonoBehaviour
 			}
 		}
 
-		//// 16 floats: Execute raycasts on holes
-		//foreach (var ray in rays)
-		//{
-		//	RaycastHit hit;
-		//	if (Physics.Raycast(ray, out hit, _rayLength, _holeMask | _wallMask))
-		//	{
-		//		ballState.Add(hit.distance / _rayLength);
-		//		Debug.DrawLine(ray.origin, ray.origin + ray.direction * hit.distance, Color.green);
-		//	}
-		//	else
-		//	{
-		//		ballState.Add(1.0f);
-		//	}
-		//}
-
+		// 16 floats: Execute raycasts on holes
+		foreach (var ray in rays)
+		{
+			RaycastHit hit;
+			if (Physics.Raycast(ray, out hit, _rayLength, _holeMask | _wallMask))
+			{
+				ballState.Add(hit.distance / _rayLength);
+				Debug.DrawLine(ray.origin, ray.origin + ray.direction * hit.distance, Color.green);
+			}
+			else
+			{
+				ballState.Add(1.0f);
+			}
+		}
 		return ballState;
 	}
+
 
 	#region subfunction
 	/// <summary>
 	/// In critical path: 1, not in critical path: 0
 	/// </summary>
 	/// <returns>Returns a list of features to describe the ball's state. Features: Ball position in relation to the final hole, several raycasts to sense its surroundings and its velocity.</returns>
-	private List<float> AddRouteStates(MazeCellSerial[,] mazeCells, GameObject ball, GameObject _agent)
+	public List<float> AddRouteStates(MazeCell[,] mazeCells, List<MazeCell> solutionPath, GameObject ball, GameObject _agent)
 	{
 		List<float> ballState = new List<float>();
 		Ray verticalRay = new Ray(ball.transform.position, -_agent.transform.up);
 		string log = "";
 		RaycastHit floorHit;
-
+		MazeCell cellInSolution = new MazeCell();
+		float percent;
 
 		if (Physics.Raycast(verticalRay, out floorHit, 1.0f))
 		{
@@ -175,18 +187,26 @@ public class InteractionTopDown : MonoBehaviour
 				string[] names = floorHit.transform.name.Split(',');
 				int r = int.Parse(names[0].Last<char>().ToString());
 				int c = int.Parse(names[1].First<char>().ToString());
-
+				foreach (MazeCell mc in solutionPath)
+				{
+					if (floorHit.transform.name == mc.floor.name)
+					{
+						cellInSolution = mc;
+					}
+				}
+				
 				if (mazeCells[r, c].inCriticalPath)
 				{
-					ballState.Add(1.0f);
+					percent = (float) solutionPath.IndexOf(cellInSolution) / solutionPath.Count();
+					ballState.Add(percent);
 					outTracked = false;
-					log += ("ball in critical path " + r + " " + c + " ; ");
+					log += ("ball in critical path " + r + " " + c + " with percentage " + percent + " ; ");
 				}
 				else
 				{
 					ballState.Add(0.0f);
 					outTracked = true;
-					log += ("ball in UNcritical path " + r + " " + c + " ; ");
+					log += ("ball in dead end " + r + " " + c + " ; ");
 				}
 			}
 			catch (Exception exp)
@@ -210,8 +230,9 @@ public class InteractionTopDown : MonoBehaviour
 			outTracked = true;
 			log += ("floor under ball not found");
 		}
-		return ballState;
+
 		//Debug.Log(log);
+		return ballState;;
 	}
 
 
@@ -304,6 +325,7 @@ public class InteractionTopDown : MonoBehaviour
 		{
 			wallHits[i] = Physics.Raycast(rays[i], out hits[i], transform.localScale.x / 2 + 0.005f, _wallMask);
 			Debug.DrawLine(rays[i].origin, rays[i].origin + (rays[i].direction.normalized * (transform.localScale.x / 2 + 0.005f)), Color.black, 0.0f);
+			
 		}
 		// Evaluate raycasts
 		var _isCornered = false;
@@ -331,6 +353,45 @@ public class InteractionTopDown : MonoBehaviour
 		return outTracked;
 	}
 
+
+	public Vector3 NormalizeDeg(Vector3 original)
+	{
+		var x = original.x;
+		var y = original.y;
+		var z = original.z;
+
+		Func<float, float> normalize = deg =>  deg % 360 > 0 ? (deg % 360)/360: (deg % 360 + 360)/360;
+
+		return new Vector3(normalize(x), normalize(y), normalize(z));
+	
+	}
+
+	private Vector3 NormalizeVel(Vector3 original, int min, int max)
+	{
+		var x = original.x;
+		var y = original.y;
+		var z = original.z;
+
+		Func<float, float> normalize = vel => (vel - min)/(max - min);
+
+		return new Vector3(normalize(x), normalize(y), normalize(z));
+
+	}
+
+	private Vector3 NormalizePos(Vector3 original, float size,  int row, int col)
+	{
+		// col = z , row = x
+
+		var x = original.x;
+		var y = original.y;
+		var z = original.z;
+
+		Func<float, float> normalizeX = pos => pos / (row * size) + 0.5f ;
+		Func<float, float> normalizeZ = pos => pos / (col * size) + 0.5f;
+
+		return new Vector3(normalizeX(x), 0, normalizeZ(z));
+
+	}
 
 
 }

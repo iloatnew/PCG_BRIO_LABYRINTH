@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Collections.Generic;
 
 ///************************************************************
 /// <summary>
@@ -21,8 +22,7 @@ public class LoaderTopDown : MonoBehaviour
 	public GameObject trap;
 	public GameObject goal;
 	public bool criticalOnly;
-	public GameObject[] mazes;
-	public bool usePresetMaze;
+	public int[] tokens;
 
 	[Range(0, 1f)]
 	public float difficulty;
@@ -35,6 +35,7 @@ public class LoaderTopDown : MonoBehaviour
 	public GameObject[] spawnPos;
 	private float size = 6f;
 	private Vector3 shifting;
+	private List<MazeCell> solutionPath;
 
 	public bool restart;
 
@@ -54,23 +55,38 @@ public class LoaderTopDown : MonoBehaviour
 
 
 	/// <summary>
-	/// Build Maze New
+	/// Build new maze, accroding to curriculum, spwan at random position
 	/// </summary>
-	public void RestartAndSpwan(int index)
+	public void RebuildAndSpwan(Vector3[] old_states, Vector3[] states)
 	{
 		transform.rotation = Quaternion.Euler(0, 0, 0);
-		transform.position = fixPosition;
-
 		GameObject.Destroy(player);
-		player = Instantiate(ball, transform.TransformPoint(spawnPos[index].transform.position + new Vector3(0, 1, 0)), Quaternion.identity, maze.transform);
-		player.transform.parent = maze.transform;
+		var index = (int)Random.Range(0, 16);
+		var spawn_position = new Vector3(0 * size, -(size / 2f) + 1f, 0 * size) + shifting;
+
+
+		string debug = "";
+		foreach (Vector3 state in states.Concat<Vector3>(old_states))
+		{
+			debug += state;
+			debug += " ;";
+		}
+		Debug.Log(debug);
+
+		if (index > 7)
+			spawn_position = states[index - 8];
+		else
+			spawn_position = old_states[index];
+
+		player = Instantiate(ball, transform.TransformPoint(spawn_position), Quaternion.identity, mazeParent.transform);
+		player.transform.parent = mazeParent.transform;
 	}
 
 
 	/// <summary>
 	/// Build new maze, accroding to curriculum
 	/// </summary>
-	public void RebuildAndRestart(int index)
+	public void RebuildAndRestart()
 	{
 		transform.rotation = Quaternion.Euler(0, 0, 0);
 		transform.position = fixPosition;
@@ -79,28 +95,32 @@ public class LoaderTopDown : MonoBehaviour
 		{
 			GameObject.Destroy(tra.gameObject);
 		}
-
-		string name = "Assets/MazeData/MazeCell_";
-		name += mazes[index].name;
-		name += ".dat";
-		using (Stream stream = File.Open(name, FileMode.Open))
+		fixPosition = transform.position;
+		var halfLengthRow = (mazeRows - 1) * GetSize() / 2;
+		var halfLengthColumn = (mazeColumns - 1) * GetSize() / 2;
+		shifting = new Vector3(-halfLengthRow, 0, -halfLengthColumn);
+		InitializeMaze();
+		ma = new HuntAndKillMutated(mazeCells);
+		if (tokens.Count() > 0)
 		{
-			var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-
-			mazeCellSerials = (MazeCellSerial[,])bformatter.Deserialize(stream);
-
-			mazeRows = mazeCellSerials.GetLength(0);
-			mazeColumns = mazeCellSerials.GetLength(1);
-
-			var halfLengthRow = (mazeRows - 1) * GetSize() / 2;
-			var halfLengthColumn = (mazeColumns - 1) * GetSize() / 2;
-			shifting = new Vector3(-halfLengthRow, 0, -halfLengthColumn);
-
-			maze = GameObject.Instantiate(mazes[index], transform.TransformPoint(new Vector3(0, 0, 0)), Quaternion.identity, mazeParent.transform);
-
-			player = Instantiate(ball, transform.TransformPoint(new Vector3(0 * size, -(size / 2f) + 1.5f, 0 * size) + shifting), Quaternion.identity, maze.transform);
-			player.transform.parent = maze.transform;
+			var index = (int)Random.Range(0, tokens.Count());
+			token = tokens[index];
 		}
+		ma.SetMazeHelp(token);
+		ma.CreateMaze(token);
+
+		if (criticalOnly)
+		{
+			ma.CriticalPathOnly();
+		}
+
+		ma.DestroyWalls();
+
+		DigHole(token); // Dig Holes accroding to difficulty.
+
+		InitializeBall();
+		solutionPath = ma.solutionPath;
+
 	}
 	#endregion
 
@@ -111,50 +131,44 @@ public class LoaderTopDown : MonoBehaviour
 	void Awake()
 	{
 		fixPosition = transform.position;
-		if (!usePresetMaze)
-		{
-			var halfLengthRow = (mazeRows - 1) * GetSize() / 2;
-			var halfLengthColumn = (mazeColumns - 1) * GetSize() / 2;
-			shifting = new Vector3(-halfLengthRow, 0, -halfLengthColumn);
-
-			InitializeMaze();
-
-			ma = new HuntAndKillMutated(mazeCells);
-			ma.SetMazeHelp(token);
-			ma.CreateMaze(token);
-
-			if (criticalOnly)
-			{
-				ma.CriticalPathOnly();
-			}
-
-			//no neeed to really destroy Gameobj
-			ma.DestroyWalls();
-
-			DigHole(token); // Dig Holes accroding to difficulty.
-
-			InitializeBall();
-
-			//serialization
-			//MazeCellSerial[,] mazeCellSerials = new MazeCellSerial[mazeRows, mazeColumns];
-			//for (int r = 0; r < mazeRows; r++)
-			//{
-			//	for (int c = 0; c < mazeColumns; c++)
-			//	{
-			//		mazeCellSerials[r, c] = mazeCells[r, c].GetMazeCellSerial();
-			//	}
-			//}
-			//		FileStream fs = new FileStream("Assets/MazeData/MazeCell_3_3_1.dat", FileMode.Create);
-			//BinaryFormatter bf = new BinaryFormatter();
-			//bf.Serialize(fs, mazeCellSerials);
-			//fs.Close();
-
-		}
-		else 
-		{
-			InitializeBall();
 		
+		var halfLengthRow = (mazeRows - 1) * GetSize() / 2;
+		var halfLengthColumn = (mazeColumns - 1) * GetSize() / 2;
+		shifting = new Vector3(-halfLengthRow, 0, -halfLengthColumn);
+
+		InitializeMaze();
+
+		ma = new HuntAndKillMutated(mazeCells);
+		ma.SetMazeHelp(token);
+		ma.CreateMaze(token);
+
+		if (criticalOnly)
+		{
+			ma.CriticalPathOnly();
 		}
+
+		//no neeed to really destroy Gameobj
+		ma.DestroyWalls();
+
+		DigHole(token); // Dig Holes accroding to difficulty.
+
+		InitializeBall();
+
+		////serialization
+		//MazeCellSerial[,] mazeCellSerials = new MazeCellSerial[mazeRows, mazeColumns];
+		//for (int r = 0; r < mazeRows; r++)
+		//{
+		//	for (int c = 0; c < mazeColumns; c++)
+		//	{
+		//		mazeCellSerials[r, c] = mazeCells[r, c].GetMazeCellSerial();
+		//	}
+		//}
+		//FileStream fs = new FileStream("Assets/MazeData/3_2_2.dat", FileMode.Create);
+		//BinaryFormatter bf = new BinaryFormatter();
+		//bf.Serialize(fs, mazeCellSerials);
+		//fs.Close();
+
+	
 
 	}
 
@@ -164,6 +178,7 @@ public class LoaderTopDown : MonoBehaviour
 	void Start()
 	{
 		player.GetComponent<Rigidbody>().isKinematic = false;
+	
 	}
 	#endregion
 	// Update is called once per frame
@@ -173,7 +188,7 @@ public class LoaderTopDown : MonoBehaviour
 		if (restart)
 		{
 			restart = false;
-			Restart();
+			RebuildAndRestart();
 
 		}
 
@@ -333,7 +348,7 @@ public class LoaderTopDown : MonoBehaviour
 	{
 		player = Instantiate(ball, transform.TransformPoint(new Vector3(0 * size, -(size / 2f) + 1f, 0 * size) + shifting), Quaternion.identity, mazeParent.transform);
 		player.name = "Player";
-		player.GetComponent<Rigidbody>().isKinematic = true;
+		//player.GetComponent<Rigidbody>().isKinematic = true;
 		player.transform.parent = mazeParent.transform;
 	}
 	/// Block 2  Dig Hole
@@ -345,12 +360,10 @@ public class LoaderTopDown : MonoBehaviour
 		return this.size;
 	}
 
-	public MazeCellSerial[,] GetMazeCells()
+	public MazeCell[,] GetMazeCells()
 	{
-		if (!usePresetMaze)
-			return mazeCells;
-		else
-			return mazeCellSerials;
+		
+		return mazeCells;
 	}
 
 	public GameObject GetPlayer()
@@ -360,6 +373,27 @@ public class LoaderTopDown : MonoBehaviour
 
 	public GameObject GetGoal()
 	{
-		return GameObject.Find("Goal");
+		if(goal!=null)
+			if (goal.transform.parent != null)
+				if (goal.transform.parent == transform.GetChild(0))
+					return goal;
+
+		foreach (Transform tra in maze.transform)
+		{
+			if (tra.name == "Goal")
+				goal = tra.gameObject;
+		}
+		
+		return goal;
+	}
+
+	public Vector3 GetShift()
+	{
+		return shifting;
+	}
+
+	public List<MazeCell> GetSolutionPath()
+	{
+		return solutionPath;
 	}
 }

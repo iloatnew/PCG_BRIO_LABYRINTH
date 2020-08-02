@@ -9,7 +9,7 @@ public class ProceduralNumberGenerator {
 
 	public static int Stat_GetNextNumber(int token) {
 
-		string currentNum = con_key.Substring(stat_currentPosition += token % con_key.Length, 1);
+		string currentNum = con_key.Substring( (stat_currentPosition += token) % con_key.Length, 1);
 		return int.Parse(currentNum);
 	
 	}

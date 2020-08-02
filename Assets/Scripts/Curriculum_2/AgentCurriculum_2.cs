@@ -7,10 +7,9 @@ using Barracuda;
 
 public class AgentCurriculum_2 : Agent
 {
-	public LoaderCurriculum_2 mazeLoader;
-	public AgentInteraction agentInteraction;
+	public LoaderTopDown mazeLoader;
 	public MazeAcademy mazeAcademy;
-	public NNModel mazeBrain;
+	public InteractionTopDown agentInteraction;
 	public int index;
 	Transform target;
 	Transform ball;
@@ -30,14 +29,7 @@ public class AgentCurriculum_2 : Agent
 	/// </summary>
 	public override void AgentReset()
 	{
-		index = (int)mazeAcademy.FloatProperties.GetPropertyWithDefault("mazeindex", 0);
-		GiveModel("MazeBrain", mazeBrain);
-		Debug.Log(index);
-
-		mazeLoader.RestartAndSpwan(index);
-		target = mazeLoader.GetGoal().transform;
-		ball = mazeLoader.GetPlayer().transform;
-		initDistance = Math.Abs(Vector3.Distance(ball.position, target.position));
+		mazeLoader.Restart();
 	}
 
 	/// <summary>
@@ -47,18 +39,35 @@ public class AgentCurriculum_2 : Agent
 	/// </summary>
 	public override void CollectObservations()
 	{
-
 		target = mazeLoader.GetGoal().transform;
 		ball = mazeLoader.GetPlayer().transform;
+		List<float> ballState = new List<float>();
+		// Raycast surroundings
+		// Create rays
+		Ray[] rays = new Ray[16];
+		float step = 360 / 16;
+		for (int i = 0; i < 16; i++)
+		{
+			Vector3 rayDirection = Quaternion.AngleAxis(step * i, transform.up) * transform.forward;
+			rays[i] = new Ray(ball.transform.position, rayDirection);
+		}
 
-		// Total 43 inputs
-		List<float> state = agentInteraction.CollectBallState(ball.GetComponent<Rigidbody>(), target, transform.GetChild(0), ball); // 39 inputs collected??
+		// 16 floats: Execute raycasts on walls
+		foreach (var ray in rays)
+		{
+			RaycastHit hit;
+			if (Physics.Raycast(ray, out hit, agentInteraction._rayLength, (agentInteraction._wallMask | agentInteraction._holeMask) ))
+			{
+				ballState.Add(hit.distance / agentInteraction._rayLength);
+				//Debug.DrawLine(ray.origin, ray.origin + ray.direction * hit.distance, Color.red);
+			}
+			else
+			{
+				ballState.Add(1.0f);
+			}
+		}
+		AddVectorObs(ballState);
 
-		state.Add(transform.localEulerAngles.x / 360f);
-		state.Add(transform.localEulerAngles.z / 360f);
-		//state.Add(Convert.ToSingle(_ballBehavior.IsCornered));
-
-		AddVectorObs(state);
 	}
 
 
@@ -73,57 +82,77 @@ public class AgentCurriculum_2 : Agent
 	public override void AgentAction(float[] vectorAction)
 	{
 
-		// somehow these two always lost
-		target = mazeLoader.GetGoal().transform;
-		ball = mazeLoader.GetPlayer().transform;
-
-		//isConered: punish
-		if (agentInteraction.IsCornered(this.transform, ball))
-		{
-			AddReward(-0.005f);
-		}
-
-		// Actions, size = 2, Discret
+		// Actions, branch = 2; size = 5, Discret
 		Vector3 controlSignal = Vector3.zero;
 
 		if ((int)vectorAction[0] == 1)
 			controlSignal.x = 1f;
 		else if ((int)vectorAction[0] == 2)
 			controlSignal.x = -1f;
+		else if ((int)vectorAction[0] == 3)
+			controlSignal.x = 2.5f;
+		else if ((int)vectorAction[0] == 4)
+			controlSignal.x = -2.5f;
+
 		if ((int)vectorAction[1] == 1)
 			controlSignal.z = 1f;
 		else if ((int)vectorAction[1] == 2)
 			controlSignal.z = -1f;
+		else if ((int)vectorAction[1] == 3)
+			controlSignal.z = 2.5f;
+		else if ((int)vectorAction[1] == 4)
+			controlSignal.z = -2.5f;
 
 		agentInteraction.RefreshRotation(controlSignal);
 
-		// Rewards
 		float distanceToTarget = Math.Abs(Vector3.Distance(ball.position, target.position));
-		if (distanceToTarget > initDistance + mazeLoader.GetSize() * 1.5)
-		{
-			SetReward(-0.1f);
-			Debug.Log("outBound");
-			Done();
-		}
+
+		//// Rewards for Curri differen spawning posi
+		//if (distanceToTarget > initDistance + mazeLoader.GetSize() * 1.5)
+		//{
+		//	AddReward(-0.1f);
+		//	SetReward(GetCumulativeReward());
+		//	Debug.Log("outBound");
+		//	Done();
+		//}
 
 		//if (distanceToTarget < lastDistance)
 		//{
-		//	AddReward(0.01f);
+		//	AddReward(1f / agentParameters.maxStep);
 		//}
 		//else
 		//{
-		//	AddReward(-0.01f);
+		//	AddReward(-1f / agentParameters.maxStep);
+		//}
+
+		//lastDistance = distanceToTarget;
+
+
+		////isConered: punish
+		//if (agentInteraction.IsCornered(this.transform, ball))
+		//{
+		//	AddReward(-(1f / agentParameters.maxStep));
+		//	//Debug.Log("Connered");
 		//}
 
 
-		lastDistance = distanceToTarget;
-		// Fail
-		float distanceToBoard = ball.localPosition.y + 3;
+		//if (agentInteraction.OutTracked())
+		//{
+		//	AddReward(-(1f / agentParameters.maxStep));
+		//	//Debug.Log("Maze " + mazeLoader.maze.name + " OutTracked");
+		//}
 
-		if (IsMaxStepReached())
+		// Fail
+		float distanceToBoard = ball.localPosition.y;
+
+		if (GetStepCount() == agentParameters.maxStep)
 		{
 			AddReward(-0.5f);
-			Debug.Log("Max Step Reached");
+			SetReward(GetCumulativeReward());
+			Debug.Log("Max Step Reached with " + GetCumulativeReward());
+
+			//statistic_Writter.WriteStat(false, GetStepCount());
+
 			Done();
 		}
 
@@ -131,15 +160,24 @@ public class AgentCurriculum_2 : Agent
 		if (distanceToTarget < 3f)
 		{
 			AddReward(4.0f);
-			Debug.Log("Success");
+			//success_cnt++;
+			SetReward(GetCumulativeReward());
+			Debug.Log("Maze " + mazeLoader.maze.name + "Success with " + GetCumulativeReward());
+
+			//statistic_Writter.WriteStat(true, GetStepCount());
+
 			Done();
 		}
 
 		// Fell off platform
-		if (Math.Abs(distanceToBoard) > 2.5f)
+		if (distanceToBoard < -3.5f)
 		{
-			AddReward(-0.1f);
-			Debug.Log("Fall");
+			AddReward(-0.5f);
+			SetReward(GetCumulativeReward());
+			//Debug.Log("Fall with " + GetCumulativeReward());
+
+			//statistic_Writter.WriteStat(false, GetStepCount());
+
 			Done();
 		}
 	}

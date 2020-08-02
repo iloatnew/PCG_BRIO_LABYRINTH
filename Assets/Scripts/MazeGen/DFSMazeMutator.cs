@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DFSMazeMutator 
+public class DFSMazeMutator
 {
 
 	private enum Dir { north = 1, south = 2, east = 3, west = 4, none = 0 };
@@ -10,6 +11,7 @@ public class DFSMazeMutator
 	int mazeRows;
 	int mazeColumns;
 	MazeHelp mazeHelp;
+	public List<MazeCell> solutionPath;
 
 	public DFSMazeMutator(MazeHelp mazeHelp)
 	{
@@ -17,6 +19,7 @@ public class DFSMazeMutator
 		this.mazeRows = mazeHelp.mazeRows;
 		this.mazeColumns = mazeHelp.mazeColumns;
 		this.mazeHelp = mazeHelp;
+		solutionPath = new List<MazeCell>();
 	}
 
 	/// <summary>
@@ -69,7 +72,7 @@ public class DFSMazeMutator
 			if (currentColumn == mazeColumns - 1 && currentRow == mazeRows - 1)
 			{
 				finish = true;
-				return;
+				continue;
 			}
 
 			// calculate next position
@@ -145,6 +148,19 @@ public class DFSMazeMutator
 
 		}
 
+		pace = 0;
+		
+		while (currentCell != mazeCells[0, 0] && pace < 10)
+		{
+			var partPath = new List<MazeCell>();
+			foreach (MazeCell mc in currentCell.pathTilLastSaveP)
+				partPath.Add(mc);
+			partPath.AddRange(solutionPath);
+			solutionPath = partPath;
+			currentCell = (MazeCell)currentCell.pathTilLastSaveP[0];
+			pace++;
+		}
+
 	}
 
 	/// <summary>
@@ -203,57 +219,96 @@ public class DFSMazeMutator
 		{
 			for (int c = 0; c < mazeColumns; c++)
 			{
-				mazeCells[r, c].southOpen = false;
-				mazeCells[r, c].northOpen = false;
-				mazeCells[r, c].eastOpen = false;
-				mazeCells[r, c].westOpen = false;
-
-				// the northern cell
+				
+				// the northern cell exists 
 				if (mazeHelp.CellIsAvailable(r - 1, c, true))
-					if(mazeCells[r - 1, c].inCriticalPath && mazeCells[r,c].inCriticalPath)
+				{
+					var criticCheck = (mazeCells[r - 1, c].inCriticalPath && mazeCells[r, c].inCriticalPath);
+					var wallCheck = (mazeCells[r, c].northOpen == false || mazeCells[r - 1, c].southOpen == false);
+					// not both are in critical path or there's wall in between
+					if (!criticCheck || wallCheck)
 					{
-						mazeCells[r - 1, c].southOpen = true;
-						mazeCells[r, c].northOpen = true;
+						// then build a wall
+						mazeCells[r - 1, c].southOpen = false;
+						mazeCells[r, c].northOpen = false;
+						if(mazeCells[r - 1, c].southWall!=null)
+							mazeCells[r - 1, c].NonDfsWalls.Add(mazeCells[r - 1, c].southWall.transform);
 					}
+					if (criticCheck && wallCheck)
+					{
+						//Debug.Log((r - 1) + " " + c + " has speicial south wall");
+						if (mazeCells[r - 1, c].southWall != null)
+							mazeCells[r - 1, c].DfsWalls.Add(mazeCells[r - 1, c].southWall.transform);
+					}
+				}
+
 				// the southern cell
 				if (mazeHelp.CellIsAvailable(r + 1, c, true))
-					if (mazeCells[r + 1, c].inCriticalPath && mazeCells[r, c].inCriticalPath)
+				{
+					var criticCheck = (mazeCells[r + 1, c].inCriticalPath && mazeCells[r, c].inCriticalPath);
+					var wallCheck = (mazeCells[r, c].southOpen == false || mazeCells[r + 1, c].northOpen == false);
+					if (!criticCheck || wallCheck)
 					{
-						mazeCells[r + 1, c].northOpen = true;
-						mazeCells[r, c].southOpen = true;
+						mazeCells[r + 1, c].northOpen = false;
+						mazeCells[r, c].southOpen = false;
+						if (mazeCells[r, c].southWall != null)
+							mazeCells[r, c].NonDfsWalls.Add(mazeCells[r, c].southWall.transform);
 					}
+					if (criticCheck && wallCheck)
+					{
+						//Debug.Log(r + " " + c + " has speicial south wall");
+						if (mazeCells[r, c].southWall != null)
+							mazeCells[r, c].DfsWalls.Add(mazeCells[r, c].southWall.transform);
+					}
+				}
 				// the eastern cell
-				if (mazeHelp.CellIsAvailable(r , c + 1 , true))
-					if (mazeCells[r, c + 1].inCriticalPath && mazeCells[r, c].inCriticalPath)
+				if (mazeHelp.CellIsAvailable(r, c + 1, true))
+				{
+					var criticCheck = (mazeCells[r, c + 1].inCriticalPath && mazeCells[r, c].inCriticalPath);
+					var wallCheck = (mazeCells[r, c + 1].westOpen == false || mazeCells[r, c].eastOpen == false);
+
+					if (!criticCheck || wallCheck)
 					{
-						mazeCells[r, c + 1].westOpen = true;
-						mazeCells[r, c].eastOpen = true;
+						mazeCells[r, c + 1].westOpen = false;
+						mazeCells[r, c].eastOpen = false;
+						if(mazeCells[r, c].eastWall!=null)
+							mazeCells[r, c].NonDfsWalls.Add(mazeCells[r, c].eastWall.transform);
 					}
+					if (criticCheck && wallCheck)
+					{
+						//Debug.Log(r + " " + c + " has speicial east wall");
+						if (mazeCells[r, c].eastWall != null)
+							mazeCells[r, c].DfsWalls.Add(mazeCells[r, c].eastWall.transform);
+					}
+				}
 
 				// the western cell
 				if (mazeHelp.CellIsAvailable(r, c - 1, true))
-					if (mazeCells[r, c - 1].inCriticalPath && mazeCells[r, c].inCriticalPath)
+				{
+					var criticCheck = (mazeCells[r, c - 1].inCriticalPath && mazeCells[r, c].inCriticalPath);
+					var wallCheck = (mazeCells[r, c - 1].eastOpen == false || mazeCells[r, c].westOpen == false);
+
+					if (!criticCheck || wallCheck)
 					{
-						mazeCells[r, c - 1].eastOpen = true;
-						mazeCells[r, c].westOpen = true;
+						mazeCells[r, c - 1].eastOpen = false;
+						mazeCells[r, c].westOpen = false;
+						if (mazeCells[r, c - 1].eastWall != null)
+							mazeCells[r, c - 1].NonDfsWalls.Add(mazeCells[r, c - 1].eastWall.transform);
 					}
-					
+					if (criticCheck && wallCheck)
+					{
+						//Debug.Log(r + " " + (c -1)  + " has speicial east wall");
+						if (mazeCells[r, c - 1].eastWall != null)
+							mazeCells[r, c - 1].DfsWalls.Add(mazeCells[r, c - 1].eastWall.transform);
+					}
+				}
+				
+				
 			}
 		}
-		
-
-		//MazeCell goal = mazeCells[mazeRows - 1, mazeColumns - 1];
-		//List<MazeCell> criticalPath = new List<MazeCell>();
-		//criticalPath = goal.pathTilLastSaveP;
-
-		//while (criticalPath != new List<MazeCell>())
-		//{
-		//	criticalPath[0].
-
-
-		//}
-
-
 	}
+
+
+
 
 }

@@ -10,22 +10,30 @@ public class AgentTopDown: Agent
 	public LoaderTopDown mazeLoader;
 	public InteractionTopDown agentInteraction;
 	public MazeAcademy mazeAcademy;
-	public NNModel mazeBrain;
+	public Statistic_Writter statistic_Writter;
 	public int index;
 	public bool useCurriculum;
+	public bool useRandomSpawn;
 	Transform target;
 	Transform ball;
 	float lastDistance;
-	float initDistance;
+	Vector3 cur_state = new Vector3();
+	Vector3[] states = new Vector3[8];
+	Vector3[] oldstates = new Vector3[8];
+	int success_cnt = 0;
+	public float noise;
+
+	private List<MazeCell> solutionPath;
 
 	void Start()
 	{
 		target = mazeLoader.GetGoal().transform;
 		ball = mazeLoader.GetPlayer().transform;
-		if (mazeLoader.usePresetMaze)
-		{
-			useCurriculum = true;
-		}
+		//world position
+		cur_state = transform.TransformPoint( mazeLoader.GetGoal().transform.localPosition + new Vector3(0f, ball.localScale.y, 0) );
+		//uncomment here, activate rev curri
+		SampleNextStates(cur_state);
+		oldstates = states;
 	}
 
 	/// <summary>
@@ -36,21 +44,24 @@ public class AgentTopDown: Agent
 	public override void AgentReset()
 	{
 
-		GiveModel("MazeBrain", mazeBrain);
-		//curriculum with different mazes
 		if (useCurriculum)
 		{
-			index = (int)mazeAcademy.FloatProperties.GetPropertyWithDefault("mazeindex", 0);
-			mazeLoader.RebuildAndRestart(index);
+			//Debug.Log("success " + success_cnt + " times");
+			if (success_cnt >= 5)
+			{
+				success_cnt = 0;
+				SampleNextStates(cur_state);
+				cur_state = transform.TransformPoint(states[0]);
+			}
+		
+			mazeLoader.RebuildAndSpwan(oldstates, states);
 		}
 		//normal
 		else 
 		{
-			mazeLoader.Restart();
+			mazeLoader.RebuildAndRestart();
+			//mazeLoader.Restart();
 		}
-		target = mazeLoader.GetGoal().transform;
-		ball = mazeLoader.GetPlayer().transform;
-		initDistance = Math.Abs(Vector3.Distance(ball.position, target.position));
 		//mazeLoader.RestartAndSpwan(index);
 
 	}
@@ -68,6 +79,7 @@ public class AgentTopDown: Agent
 
 		// Total 43 inputs
 		List<float> state = agentInteraction.CollectBallState(ball.GetComponent<Rigidbody>(), mazeLoader); // 39 inputs collected??
+
 
 		// Set mask makes agent only able to trun it backwards, when the board reaches already the max rotation
 		var curRotation = transform.rotation.eulerAngles;
@@ -112,97 +124,132 @@ public class AgentTopDown: Agent
 		Vector3 controlSignal = Vector3.zero;
 
 		if ((int)vectorAction[0] == 1)
-			controlSignal.x = 1f;
+			controlSignal.x = 0.75f;
 		else if ((int)vectorAction[0] == 2)
-			controlSignal.x = -1f;
+			controlSignal.x = -0.75f;
 		else if ((int)vectorAction[0] == 3)
-			controlSignal.x = 2.5f;
+			controlSignal.x = 1.75f;
 		else if ((int)vectorAction[0] == 4)
-			controlSignal.x = -2.5f;
+			controlSignal.x = -1.75f;
 
 		if ((int)vectorAction[1] == 1)
-			controlSignal.z = 1f;
+			controlSignal.z = 0.75f;
 		else if ((int)vectorAction[1] == 2)
-			controlSignal.z = -1f;
+			controlSignal.z = -0.75f;
 		else if ((int)vectorAction[1] == 3)
-			controlSignal.z = 2.5f;
+			controlSignal.z = 1.75f;
 		else if ((int)vectorAction[1] == 4)
-			controlSignal.z = -2.5f;
+			controlSignal.z = -1.75f;
 
 		agentInteraction.RefreshRotation(controlSignal);
-		
 		CalcRewards();
 
-		
+	}
+
+	private void FixedUpdate()
+	{
+		//Debug.Log(GetCumulativeReward());
 	}
 
 	private void CalcRewards()
 	{
+		// Dense Reward 2
+
+		//float percent = agentInteraction.AddRouteStates(
+		//	mazeLoader.GetMazeCells(),
+		//	mazeLoader.GetSolutionPath(),
+		//	mazeLoader.GetPlayer(),
+		//	this.gameObject
+		//)[0];
+
+		//if (percent > lastDistance)
+		//{
+		//	AddReward( 2f / mazeLoader.GetSolutionPath().Count);
+		//}
+		//else if(percent < lastDistance)
+		//{
+		//	AddReward(-2f / mazeLoader.GetSolutionPath().Count );
+		//}
+		
+		//lastDistance = percent;
+
 		float distanceToTarget = Math.Abs(Vector3.Distance(ball.position, target.position));
 
-		//// Rewards for Curri differen spawning posi
+		// Dense reward 1
+		
 		//if (distanceToTarget > initDistance + mazeLoader.GetSize() * 1.5)
 		//{
 		//	AddReward(-0.1f);
-		//  SetReward(GetCumulativeReward());
+		//	SetReward(GetCumulativeReward());
 		//	Debug.Log("outBound");
 		//	Done();
 		//}
 
-		if (distanceToTarget < lastDistance)
-		{
-			AddReward(1f / agentParameters.maxStep);
-		}
-		else
-		{
-			AddReward(-1f / agentParameters.maxStep);
-		}
+		//if (distanceToTarget < lastDistance)
+		//{
+		//	AddReward(1f / agentParameters.maxStep);
+		//}
+		//else
+		//{
+		//	AddReward(-1f / agentParameters.maxStep);
+		//}
 
-		lastDistance = distanceToTarget;
-
-
-		//isConered: punish
-		if (agentInteraction.IsCornered(this.transform, ball))
-		{
-			AddReward(-(1f / agentParameters.maxStep));
-			Debug.Log("Connered");
-		}
+		//lastDistance = distanceToTarget;
 
 
-		if (agentInteraction.OutTracked())
-		{
-			AddReward(-(1f / agentParameters.maxStep));
-			Debug.Log("OutTracked");
-		}
+		////isConered: punish
+		//if (agentInteraction.IsCornered(this.transform, ball))
+		//{
+		//	AddReward(-(1f / agentParameters.maxStep));
+		//	//Debug.Log("Connered");
+		//}
+
+
+		//if (agentInteraction.OutTracked())
+		//{
+		//	AddReward(-(1f / agentParameters.maxStep));
+		//	//Debug.Log("Maze " + mazeLoader.maze.name + " OutTracked");
+		//}
 
 		// Fail
-		float distanceToBoard = ball.localPosition.y + 3;
+		float distanceToBoard = ball.localPosition.y;
 
 		if (GetStepCount() == agentParameters.maxStep)
 		{
 			AddReward(-0.5f);
 			SetReward(GetCumulativeReward());
 			Debug.Log("Max Step Reached with " + GetCumulativeReward());
+
+			statistic_Writter.WriteStat(false, GetStepCount());
+
 			Done();
 		}
 
 		// Reached target
 		if (distanceToTarget < 3f)
 		{
-			AddReward(4.0f);
+			AddReward(2.0f);
+			success_cnt++;
 			SetReward(GetCumulativeReward());
-			Debug.Log("Success with " + GetCumulativeReward());
+			Debug.Log("Maze " + mazeLoader.maze.name + "Success with " + GetCumulativeReward());
+
+			statistic_Writter.WriteStat(true, GetStepCount());
+
 			Done();
 		}
 
 		// Fell off platform
-		if (Math.Abs(distanceToBoard) > 2.5f)
+		if (distanceToBoard < -3.5f)
 		{
-			AddReward(-0.1f);
+			AddReward(-0.5f);
 			SetReward(GetCumulativeReward());
-			Debug.Log("Fall with " + GetCumulativeReward());
+			//Debug.Log("Fall with " + GetCumulativeReward());
+
+			statistic_Writter.WriteStat(false, GetStepCount());
+
 			Done();
 		}
+
 	}
 
 	/// <summary>
@@ -227,7 +274,70 @@ public class AgentTopDown: Agent
 		return action;
 	}
 
+	public void SampleNextStates(Vector3 cur_state)
+	{
+		//Debug.Log("sample with " + cur_state);
 
+		Vector3 state = new Vector3();
+		Ray[] rays = new Ray[16];
+		float step = 360 / 16;
+		for (int i = 0; i < 16; i++)
+		{
+			Vector3 rayDirection = Quaternion.AngleAxis(step * i, transform.up) * transform.forward;
+			rays[i] = new Ray(cur_state, rayDirection);
+		}
+
+		int iter = 0;
+
+		// 16 floats: Execute raycasts on holes and walls
+		foreach (var ray in rays)
+		{
+			RaycastHit hit;
+			if (Physics.Raycast(ray, out hit, agentInteraction._rayLength, agentInteraction._holeMask | agentInteraction._wallMask))
+			{
+				//Debug.DrawLine(ray.origin, ray.origin + ray.direction * hit.distance, Color.red);
+
+				// new state: cell_size away from cur state or the hit position. Must be far away than current position
+				var shift = (hit.point - cur_state).normalized * mazeLoader.GetSize();
+				if (shift.magnitude > (hit.point - cur_state).magnitude) 
+				{
+					shift = (hit.point - cur_state);
+				}
+				shift -= (hit.point - cur_state).normalized * ball.localScale.y/2;
+				state = cur_state + shift;
+
+				var new_state_start = Math.Abs( Vector3.Distance(transform.TransformPoint(mazeLoader.GetShift()), state) ) - noise;
+				var cur_state_start = Math.Abs( Vector3.Distance(transform.TransformPoint(mazeLoader.GetShift()), cur_state));
+
+				if (new_state_start < cur_state_start) {
+
+					//Debug.Log("add state " + iter + " from " + cur_state + " value: " + transform.InverseTransformPoint(state));
+					// state[] local position
+					states[iter] = transform.InverseTransformPoint(state);
+
+					//cant greater than 7
+					if (iter < 7)
+						iter++;
+
+					// 5%, refresh old states buffer
+					if (UnityEngine.Random.Range(0, 1) < 0.05)
+					{
+						oldstates[iter] = states[iter];
+					}
+				}
+				
+				
+			}
+			
+		}
+
+		//if (init) {
+		//	init = false;
+		//	oldstates = states;
+		//	AgentReset();
+		//}
+
+	}
 
 
 }
